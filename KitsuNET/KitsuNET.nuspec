@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>KitsuNET</id>
+    <version>0.0.1</version>
+    <title>KitsuNET</title>
+    <authors>Kurozero</authors>
+    <owners>Kurozero</owners>
+    <projectUrl>https://github.com/KurozeroPB/KitsuNET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Wrapper for kitsu.io</description>
+    <releaseNotes>Alpha release, currently only supports getting anime by name</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>C# csharp kitsu anime manga dotnet dotnetcore novel</tags>
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.0">
+        <dependency id="Microsoft.NETCore.App" version="2.0.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="10.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/media/kurozero/Data/RiderProjects/KitsuNET/KitsuNET/bin/Debug/netstandard2.0/KitsuNET.dll" target="lib/netstandard2.0/KitsuNET.dll" />
+  </files>
+</package>
