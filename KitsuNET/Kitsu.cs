@@ -4,6 +4,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using KitsuNET.Models;
 using Newtonsoft.Json;
+// ReSharper disable UnusedMember.Global
+// TODO: Add manga and character search -> including Models and Interfaces
 
 namespace KitsuNET
 {
@@ -28,7 +30,7 @@ namespace KitsuNET
             }
             catch (Exception e)
             {
-                var err = "{'error':'"+ e.Message +"'}";
+                var err = "{'error':'" + e.Message + "'}";
                 var returnThing = JsonConvert.DeserializeObject<AnimeModel>(err);
                 return returnThing;
             }
