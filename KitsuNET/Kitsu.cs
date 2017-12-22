@@ -1,19 +1,16 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using KitsuNET.Models;
-using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
 // TODO: Add manga and character search -> including Models and Interfaces
 
 namespace KitsuNET
 {
-    public class Anime
+    internal static class HttpReq
     {
         private const string UserAgent = "KitsuNET - (https://github.com/KurozeroPB/KitsuNET)";
         
-        public static async Task<AnimeModel> GetAnimeAsync(string name)
+        public static async Task<string> AnimeByNameAsync(string name)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -23,17 +20,7 @@ namespace KitsuNET
             var stringTask = client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]=0");
             var json = await stringTask;
 
-            try
-            {
-                var anime = JsonConvert.DeserializeObject<AnimeModel>(json);
-                return anime;
-            }
-            catch (Exception e)
-            {
-                var err = "{'error':'" + e.Message + "'}";
-                var returnThing = JsonConvert.DeserializeObject<AnimeModel>(err);
-                return returnThing;
-            }
+            return json;
         }
     }
 }
