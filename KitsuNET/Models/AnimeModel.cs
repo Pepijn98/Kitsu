@@ -4,10 +4,19 @@ using Newtonsoft.Json;
 
 namespace KitsuNET.Models
 {
-    public class AnimeModel : IAnime
+    public class AnimeModelByName : IAnimeByName
     {
         [JsonProperty("data")]
         public List<AnimeDataModule> Data { get; set; }
+        
+        [JsonProperty("error")]
+        public string Error { get; set; }
+    }
+    
+    public class AnimeModelById : IAnimeById
+    {
+        [JsonProperty("data")]
+        public AnimeDataModule Data { get; set; }
         
         [JsonProperty("error")]
         public string Error { get; set; }

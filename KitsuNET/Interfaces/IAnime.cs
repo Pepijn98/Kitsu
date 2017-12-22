@@ -4,9 +4,15 @@ using KitsuNET.Models;
 
 namespace KitsuNET.Interfaces
 {
-    public interface IAnime
+    public interface IAnimeByName
     {
         List<AnimeDataModule> Data { get; set; }
+        string Error { get; set; }
+    }
+    
+    public interface IAnimeById
+    {
+        AnimeDataModule Data { get; set; }
         string Error { get; set; }
     }
     
