@@ -7,7 +7,7 @@ namespace KitsuNET.Models
     public class AnimeModelByName : IAnimeByName
     {
         [JsonProperty("data")]
-        public List<AnimeDataModule> Data { get; set; }
+        public List<AnimeDataModel> Data { get; set; }
         
         [JsonProperty("error")]
         public string Error { get; set; }
@@ -16,13 +16,13 @@ namespace KitsuNET.Models
     public class AnimeModelById : IAnimeById
     {
         [JsonProperty("data")]
-        public AnimeDataModule Data { get; set; }
+        public AnimeDataModel Data { get; set; }
         
         [JsonProperty("error")]
         public string Error { get; set; }
     }
     
-    public class AnimeDataModule : IAnimeData
+    public class AnimeDataModel : IAnimeData
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -31,10 +31,10 @@ namespace KitsuNET.Models
         public string Type { get; set; }
         
         [JsonProperty("attributes")]
-        public AnimeAttributesModule Attributes { get; set; }
+        public AnimeAttributesModel Attributes { get; set; }
     }
 
-    public class AnimeAttributesModule : IAnimeAttributes
+    public class AnimeAttributesModel : IAnimeAttributes
     {
         [JsonProperty("tba")]
         public string Tba { get; set; }
@@ -61,13 +61,13 @@ namespace KitsuNET.Models
         public int? EpisodeLength { get; set; }
         
         [JsonProperty("coverImage")]
-        public AnimeCoverImageModule CoverImage { get; set; }
+        public AnimeCoverImageModel CoverImage { get; set; }
         
         [JsonProperty("slug")]
         public string Slug { get; set; }
         
         [JsonProperty("titles")]
-        public AnimeTitlesModule Titles { get; set; }
+        public AnimeTitlesModel Titles { get; set; }
     
         [JsonProperty("ageRatingGuide")]
         public string AgeRatingGuide { get; set; }
@@ -91,7 +91,7 @@ namespace KitsuNET.Models
         public int? RatingRank { get; set; }
             
         [JsonProperty("posterImage")]
-        public AnimePosterImageModule AnimePoster { get; set; }
+        public AnimePosterImageModel AnimePoster { get; set; }
         
         [JsonProperty("synopsis")]
         public string Synopsis { get; set; }
@@ -106,7 +106,7 @@ namespace KitsuNET.Models
         public int? PopularityRank { get; set; }
     }
 
-    public class AnimeCoverImageModule : IAnimeCoverImage
+    public class AnimeCoverImageModel : IAnimeCoverImage
     {
         [JsonProperty("original")]
         public string Original { get; set; }
@@ -121,7 +121,7 @@ namespace KitsuNET.Models
         public string Large { get; set; }
     }
     
-    public class AnimeTitlesModule : IAnimeTitles
+    public class AnimeTitlesModel : IAnimeTitles
     {
         [JsonProperty("en_jp")]
         public string EnJp { get; set; }
@@ -130,7 +130,7 @@ namespace KitsuNET.Models
         public string JaJp { get; set; }
     }
     
-    public class AnimePosterImageModule : IAnimePosterImage
+    public class AnimePosterImageModel : IAnimePosterImage
     { 
         [JsonProperty("tiny")]
         public string Tiny { get; set; }

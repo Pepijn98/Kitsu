@@ -6,13 +6,13 @@ namespace KitsuNET.Interfaces
 {
     public interface IAnimeByName
     {
-        List<AnimeDataModule> Data { get; set; }
+        List<AnimeDataModel> Data { get; set; }
         string Error { get; set; }
     }
     
     public interface IAnimeById
     {
-        AnimeDataModule Data { get; set; }
+        AnimeDataModel Data { get; set; }
         string Error { get; set; }
     }
     
@@ -20,7 +20,7 @@ namespace KitsuNET.Interfaces
     {
         string Id { get; set; }
         string Type { get; set; }
-        AnimeAttributesModule Attributes { get; set; }
+        AnimeAttributesModel Attributes { get; set; }
     }
 
     public interface IAnimeAttributes
@@ -33,8 +33,8 @@ namespace KitsuNET.Interfaces
         string Subtype { get; set; }
         string CanonicalTitle { get; set; }
         int? EpisodeLength { get; set; }
-        AnimeCoverImageModule CoverImage { get; set; }
-        AnimeTitlesModule Titles { get; set; }
+        AnimeCoverImageModel CoverImage { get; set; }
+        AnimeTitlesModel Titles { get; set; }
         string AgeRatingGuide { get; set; }
         string StartDate { get; set; }
         int? EpisodeCount { get; set; }
@@ -42,7 +42,7 @@ namespace KitsuNET.Interfaces
         bool Nsfw { get; set; }
         string EndDate { get; set; }
         int? RatingRank { get; set; }
-        AnimePosterImageModule AnimePoster { get; set; }
+        AnimePosterImageModel AnimePoster { get; set; }
         string Synopsis { get; set; }
         string ShowType { get; set; }
         int? UserCount { get; set; }

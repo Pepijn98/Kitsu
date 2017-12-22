@@ -29,19 +29,19 @@ namespace KitsuNET.Anime
         }
 
         // Get an anime by it's id
-        public static async Task<AnimeModelByName> GetAnimeAsync(int id)
+        public static async Task<AnimeModelById> GetAnimeAsync(int id)
         {
             var json = await AnimeByIdAsync(id);
             
             try
             {
-                var anime = JsonConvert.DeserializeObject<AnimeModelByName>(json);
+                var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
                 return anime;
             }
             catch (Exception e)
             {
                 var err = "{'error':'" + e.Message + "'}";
-                var anime = JsonConvert.DeserializeObject<AnimeModelByName>(err);
+                var anime = JsonConvert.DeserializeObject<AnimeModelById>(err);
                 return anime;
             }
         }
