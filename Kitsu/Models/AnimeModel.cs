@@ -1,150 +1,150 @@
 ﻿using System.Collections.Generic;
-using KitsuNET.Interfaces;
+using Kitsu.Interfaces;
 using Newtonsoft.Json;
 
-namespace KitsuNET.Models
+namespace Kitsu.Models
 {
     public class AnimeModelByName : IAnimeByName
     {
         [JsonProperty("data")]
-        public List<AnimeDataModel> Data { get; set; }
+        public List<AnimeDataModel> Data { get; private set; }
         
         [JsonProperty("error")]
-        public string Error { get; set; }
+        public string Error { get; private set; }
     }
     
     public class AnimeModelById : IAnimeById
     {
         [JsonProperty("data")]
-        public AnimeDataModel Data { get; set; }
+        public AnimeDataModel Data { get; private set; }
         
         [JsonProperty("error")]
-        public string Error { get; set; }
+        public string Error { get; private set; }
     }
     
     public class AnimeDataModel : IAnimeData
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Id { get; private set; }
         
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public string Type { get; private set; }
         
         [JsonProperty("attributes")]
-        public AnimeAttributesModel Attributes { get; set; }
+        public AnimeAttributesModel Attributes { get; private set; }
     }
 
     public class AnimeAttributesModel : IAnimeAttributes
     {
         [JsonProperty("tba")]
-        public string Tba { get; set; }
+        public string Tba { get; private set; }
             
         [JsonProperty("abbreviatedTitles")]
-        public string[] AbbreviatedTitles { get; set; }
+        public string[] AbbreviatedTitles { get; private set; }
             
         [JsonProperty("averageRating")]
-        public string AverageRating { get; set; }
+        public string AverageRating { get; private set; }
             
         [JsonProperty("status")]
-        public string Status { get; set; }
+        public string Status { get; private set; }
             
         [JsonProperty("ageRating")]
-        public string AgeRating { get; set; }
+        public string AgeRating { get; private set; }
             
         [JsonProperty("subtype")]
-        public string Subtype { get; set; }
+        public string Subtype { get; private set; }
             
         [JsonProperty("canonicalTitle")]
-        public string CanonicalTitle { get; set; }
+        public string CanonicalTitle { get; private set; }
             
         [JsonProperty("episodeLength")]
-        public int? EpisodeLength { get; set; }
+        public int? EpisodeLength { get; private set; }
         
         [JsonProperty("coverImage")]
-        public AnimeCoverImageModel CoverImage { get; set; }
+        public AnimeCoverImageModel CoverImage { get; private set; }
         
         [JsonProperty("slug")]
-        public string Slug { get; set; }
+        public string Slug { get; private set; }
         
         [JsonProperty("titles")]
-        public AnimeTitlesModel Titles { get; set; }
+        public AnimeTitlesModel Titles { get; private set; }
     
         [JsonProperty("ageRatingGuide")]
-        public string AgeRatingGuide { get; set; }
+        public string AgeRatingGuide { get; private set; }
             
         [JsonProperty("startDate")]
-        public string StartDate { get; set; }
+        public string StartDate { get; private set; }
             
         [JsonProperty("episodeCount")]
-        public int? EpisodeCount { get; set; }
+        public int? EpisodeCount { get; private set; }
             
         [JsonProperty("favoritesCount")]
-        public int? FavoritesCount { get; set; }
+        public int? FavoritesCount { get; private set; }
             
         [JsonProperty("nsfw")]
-        public bool Nsfw { get; set; }
+        public bool Nsfw { get; private set; }
             
         [JsonProperty("endDate")]
-        public string EndDate { get; set; }
+        public string EndDate { get; private set; }
             
         [JsonProperty("ratingRank")]
-        public int? RatingRank { get; set; }
+        public int? RatingRank { get; private set; }
             
         [JsonProperty("posterImage")]
-        public AnimePosterImageModel AnimePoster { get; set; }
+        public AnimePosterImageModel AnimePoster { get; private set; }
         
         [JsonProperty("synopsis")]
-        public string Synopsis { get; set; }
+        public string Synopsis { get; private set; }
             
         [JsonProperty("showType")]
-        public string ShowType { get; set; }
+        public string ShowType { get; private set; }
             
         [JsonProperty("userCount")]
-        public int? UserCount { get; set; }
+        public int? UserCount { get; private set; }
             
         [JsonProperty("popularityRank")]
-        public int? PopularityRank { get; set; }
+        public int? PopularityRank { get; private set; }
     }
 
     public class AnimeCoverImageModel : IAnimeCoverImage
     {
         [JsonProperty("original")]
-        public string Original { get; set; }
+        public string Original { get; private set; }
             
         [JsonProperty("tiny")]
-        public string Tiny { get; set; }
+        public string Tiny { get; private set; }
             
         [JsonProperty("small")]
-        public string Small { get; set; }
+        public string Small { get; private set; }
             
         [JsonProperty("large")]
-        public string Large { get; set; }
+        public string Large { get; private set; }
     }
     
     public class AnimeTitlesModel : IAnimeTitles
     {
         [JsonProperty("en_jp")]
-        public string EnJp { get; set; }
+        public string EnJp { get; private set; }
             
         [JsonProperty("ja_jp")]
-        public string JaJp { get; set; }
+        public string JaJp { get; private set; }
     }
     
     public class AnimePosterImageModel : IAnimePosterImage
     { 
         [JsonProperty("tiny")]
-        public string Tiny { get; set; }
+        public string Tiny { get; private set; }
             
         [JsonProperty("small")]
-        public string Small { get; set; }
+        public string Small { get; private set; }
         
         [JsonProperty("medium")]
-        public string Medium { get; set; }
+        public string Medium { get; private set; }
             
         [JsonProperty("large")]
-        public string Large { get; set; }
+        public string Large { get; private set; }
         
         [JsonProperty("original")]
-        public string Original { get; set; }
+        public string Original { get; private set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿// ReSharper disable UnusedMember.Global
 
-namespace KitsuNET.Character
+namespace Kitsu.Character
 {
     public class Character
     {

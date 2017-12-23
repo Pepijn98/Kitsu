@@ -1,6 +1,6 @@
 ﻿// ReSharper disable UnusedMember.Global
 
-namespace KitsuNET.Manga
+namespace Kitsu.Manga
 {
     public class Manga
     {

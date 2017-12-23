@@ -2,11 +2,11 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using KitsuNET.Models;
+using Kitsu.Models;
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
 
-namespace KitsuNET.Anime
+namespace Kitsu.Anime
 {
     public class Anime
     {
