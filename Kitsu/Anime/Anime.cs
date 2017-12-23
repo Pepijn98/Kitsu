@@ -47,7 +47,7 @@ namespace Kitsu.Anime
         }
         
         /* v Http requests v */
-        private const string UserAgent = "KitsuNET - (https://github.com/KurozeroPB/KitsuNET)";
+        private const string UserAgent = "Kitsu/nuget_package - (https://github.com/KurozeroPB/Kitsu)";
         
         // Request anime by name
         private static async Task<string> AnimeByNameAsync(string name)
