@@ -9,8 +9,8 @@ namespace Kitsu.Models
         [JsonProperty("data")]
         public List<AnimeDataModel> Data { get; private set; }
         
-        [JsonProperty("error")]
-        public string Error { get; private set; }
+        [JsonProperty("errors")]
+        public List<AnimeError> Errors { get; private set; }
     }
     
     public class AnimeModelById : IAnimeById
@@ -18,8 +18,8 @@ namespace Kitsu.Models
         [JsonProperty("data")]
         public AnimeDataModel Data { get; private set; }
         
-        [JsonProperty("error")]
-        public string Error { get; private set; }
+        [JsonProperty("errors")]
+        public List<AnimeError> Errors { get; private set; }
     }
     
     public class AnimeDataModel : IAnimeData
@@ -146,5 +146,20 @@ namespace Kitsu.Models
         
         [JsonProperty("original")]
         public string Original { get; private set; }
+    }
+
+    public class AnimeError : IAnimeError
+    {
+        [JsonProperty("title")]
+        public string Title { get; private set; }
+        
+        [JsonProperty("detail")]
+        public string Detail { get; private set; }
+        
+        [JsonProperty("code")]
+        public string Code { get; private set; }
+        
+        [JsonProperty("status")]
+        public string Status { get; private set; }
     }
 }

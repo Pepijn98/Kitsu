@@ -7,13 +7,13 @@ namespace Kitsu.Interfaces
     public interface IAnimeByName
     {
         List<AnimeDataModel> Data { get; }
-        string Error { get; }
+        List<AnimeError> Errors { get; }
     }
     
     public interface IAnimeById
     {
         AnimeDataModel Data { get; }
-        string Error { get; }
+        List<AnimeError> Errors { get; }
     }
     
     public interface IAnimeData
@@ -70,5 +70,13 @@ namespace Kitsu.Interfaces
         string Medium { get; }
         string Large { get; }
         string Original { get; }
+    }
+
+    public interface IAnimeError
+    {
+        string Title { get; }
+        string Detail { get; }
+        string Code { get; }
+        string Status { get; }
     }
 }

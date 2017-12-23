@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Kitsu.Models;
@@ -11,68 +10,58 @@ namespace Kitsu.Anime
     public class Anime
     {
         // Search for an anime with the name
-        public static async Task<AnimeModelByName> SearchAnimeAsync(string name)
+        public static async Task<AnimeModelByName> GetAnimeAsync(string name)
         {
-            var json = await AnimeByNameAsync(name);
+            var json = await RequestAnimeAsync(name);
             
-            try
-            {
-                var anime = JsonConvert.DeserializeObject<AnimeModelByName>(json);
-                return anime;
-            }
-            catch (Exception e)
-            {
-                var err = "{'error':'" + e.Message + "'}";
-                var anime = JsonConvert.DeserializeObject<AnimeModelByName>(err);
-                return anime;
-            }
+            var anime = JsonConvert.DeserializeObject<AnimeModelByName>(json);
+            return anime;
         }
 
         // Get an anime by it's id
         public static async Task<AnimeModelById> GetAnimeAsync(int id)
         {
-            var json = await AnimeByIdAsync(id);
+            var json = await RequestAnimeAsync(id);
             
-            try
-            {
-                var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
-                return anime;
-            }
-            catch (Exception e)
-            {
-                var err = "{'error':'" + e.Message + "'}";
-                var anime = JsonConvert.DeserializeObject<AnimeModelById>(err);
-                return anime;
-            }
+            var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
+            return anime;
         }
         
         /* v Http requests v */
         private const string UserAgent = "Kitsu/nuget_package - (https://github.com/KurozeroPB/Kitsu)";
         
         // Request anime by name
-        private static async Task<string> AnimeByNameAsync(string name)
+        private static async Task<string> RequestAnimeAsync(string name)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-            var stringTask = client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]=0");
-            var json = await stringTask;
+            var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]=0");
 
-            return json;
+            if (resp.IsSuccessStatusCode)
+            {
+                var json = await resp.Content.ReadAsStringAsync();
+                return json;
+            }
+            else
+            {
+                var json = "{errors:['title':'Bad Request', 'detail':'" + await resp.RequestMessage.Content.ReadAsStringAsync() + "', 'code':'" + resp.StatusCode + "', 'status':'Bad Request: " + resp.StatusCode + "']}";
+                return json;
+            }
         }
 
         // Request anime by id
-        private static async Task<string> AnimeByIdAsync(int id)
+        private static async Task<string> RequestAnimeAsync(int id)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-            var stringTask = client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
-            var json = await stringTask;
+            var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
+            var json = await resp.Content.ReadAsStringAsync();
 
             return json;
         }
