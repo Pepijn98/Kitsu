@@ -2,3 +2,5 @@
 
 # Kitsu
 A kitsu api wrapper written in C# .NET Core
+
+### Updating readme soon with an example
