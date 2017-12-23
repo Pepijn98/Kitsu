@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Kitsu.Models;
@@ -23,7 +24,18 @@ namespace Kitsu.Anime
         {
             var json = await RequestAnimeAsync(id);
             
-            var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
+            AnimeModelById anime;
+
+            try
+            {
+                anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
             return anime;
         }
         
@@ -38,18 +50,8 @@ namespace Kitsu.Anime
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-            var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]=0");
-
-            if (resp.IsSuccessStatusCode)
-            {
-                var json = await resp.Content.ReadAsStringAsync();
-                return json;
-            }
-            else
-            {
-                var json = "{errors:['title':'Bad Request', 'detail':'" + await resp.RequestMessage.Content.ReadAsStringAsync() + "', 'code':'" + resp.StatusCode + "', 'status':'Bad Request: " + resp.StatusCode + "']}";
-                return json;
-            }
+            var resp = await client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]=0");
+            return resp;
         }
 
         // Request anime by id
@@ -60,10 +62,19 @@ namespace Kitsu.Anime
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-            var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
-            var json = await resp.Content.ReadAsStringAsync();
+            string resp;
 
-            return json;
+            try
+            {
+                resp = await client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+            return resp;
         }
     }
 }

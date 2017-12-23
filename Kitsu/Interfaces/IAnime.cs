@@ -7,7 +7,6 @@ namespace Kitsu.Interfaces
     public interface IAnimeByName
     {
         List<AnimeDataModel> Data { get; }
-        List<AnimeError> Errors { get; }
     }
     
     public interface IAnimeById
