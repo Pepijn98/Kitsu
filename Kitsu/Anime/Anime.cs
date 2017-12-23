@@ -51,14 +51,7 @@ namespace Kitsu.Anime
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
             var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
-            string json;
-
-            if (resp.IsSuccessStatusCode)
-            {
-                json = await client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
-                return json;
-            }
-            json = await resp.Content.ReadAsStringAsync();
+            var json = await resp.Content.ReadAsStringAsync();
             return json;
         }
     }
