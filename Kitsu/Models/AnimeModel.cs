@@ -14,6 +14,9 @@ namespace Kitsu.Models
     {
         [JsonProperty("data")]
         public AnimeDataModel Data { get; private set; }
+        
+        [JsonProperty("errors")]
+        public AnimeError[] Errors { get; private set; } = { };
     }
     
     public class AnimeDataModel : IAnimeData

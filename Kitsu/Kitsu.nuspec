@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Kitsu</id>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
         <title>Kitsu</title>
         <authors>Kurozero</authors>
         <owners>Kurozero</owners>
         <projectUrl>https://github.com/KurozeroPB/Kitsu</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>An api wrapper for kitsu.io</description>
-        <releaseNotes>Alpha release, currently only supports getting anime by name and id</releaseNotes>
+        <releaseNotes>Currently only supports getting anime by name and id</releaseNotes>
         <copyright>Copyright 2017</copyright>
         <tags>C# csharp kitsu anime manga dotnet dotnetcore novel character ani mal myanimelist</tags>
         <dependencies>

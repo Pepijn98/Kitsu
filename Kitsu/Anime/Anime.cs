@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Kitsu.Models;
@@ -51,8 +50,16 @@ namespace Kitsu.Anime
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-            var resp = await client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
-            return resp;
+            var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
+            string json;
+
+            if (resp.IsSuccessStatusCode)
+            {
+                json = await client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
+                return json;
+            }
+            json = await resp.Content.ReadAsStringAsync();
+            return json;
         }
     }
 }
