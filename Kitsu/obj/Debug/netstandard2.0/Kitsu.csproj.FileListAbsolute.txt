@@ -1,8 +1,0 @@
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/bin/Debug/netstandard2.0/Kitsu.deps.json
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/bin/Debug/netstandard2.0/Kitsu.dll
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/bin/Debug/netstandard2.0/Kitsu.pdb
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/obj/Debug/netstandard2.0/Kitsu.csproj.CoreCompileInputs.cache
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/obj/Debug/netstandard2.0/Kitsu.AssemblyInfoInputs.cache
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/obj/Debug/netstandard2.0/Kitsu.AssemblyInfo.cs
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/obj/Debug/netstandard2.0/Kitsu.dll
-/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/obj/Debug/netstandard2.0/Kitsu.pdb
