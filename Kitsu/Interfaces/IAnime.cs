@@ -12,7 +12,6 @@ namespace Kitsu.Interfaces
     public interface IAnimeById
     {
         AnimeDataModel Data { get; }
-        List<AnimeError> Errors { get; }
     }
     
     public interface IAnimeData

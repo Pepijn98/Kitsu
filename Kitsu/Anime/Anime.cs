@@ -24,18 +24,7 @@ namespace Kitsu.Anime
         {
             var json = await RequestAnimeAsync(id);
             
-            AnimeModelById anime;
-
-            try
-            {
-                anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            
+            var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
             return anime;
         }
         
@@ -62,18 +51,7 @@ namespace Kitsu.Anime
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-            string resp;
-
-            try
-            {
-                resp = await client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            
+            var resp = await client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
             return resp;
         }
     }
