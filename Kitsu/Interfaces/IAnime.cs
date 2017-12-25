@@ -41,7 +41,7 @@ namespace Kitsu.Interfaces
         bool Nsfw { get; }
         string EndDate { get; }
         int? RatingRank { get; }
-        AnimePosterImageModel AnimePoster { get; }
+        AnimePosterImageModel PosterImage { get; }
         string Synopsis { get; }
         string ShowType { get; }
         int? UserCount { get; }

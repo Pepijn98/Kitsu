@@ -88,7 +88,7 @@ namespace Kitsu.Models
         public int? RatingRank { get; private set; }
             
         [JsonProperty("posterImage")]
-        public AnimePosterImageModel AnimePoster { get; private set; }
+        public AnimePosterImageModel PosterImage { get; private set; }
         
         [JsonProperty("synopsis")]
         public string Synopsis { get; private set; }
