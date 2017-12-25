@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Kitsu.Models;
 using Newtonsoft.Json;
@@ -9,29 +8,21 @@ namespace Kitsu.Anime
 {
     public class Anime
     {
+        private readonly HttpClient _client = Kitsu.Client();
+        
         // Search for an anime with the name
-        public static async Task<AnimeModelByName> GetAnimeAsync(string name, int offset = 0)
+        public async Task<AnimeModelByName> GetAnimeAsync(string name, int offset = 0)
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
-            client.DefaultRequestHeaders.Add("User-Agent", Kitsu.UserAgent);
-
-            var json = await client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
+            var json = await _client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
             
             var anime = JsonConvert.DeserializeObject<AnimeModelByName>(json);
             return anime;
         }
 
         // Get an anime by its id
-        public static async Task<AnimeModelById> GetAnimeAsync(int id)
+        public async Task<AnimeModelById> GetAnimeAsync(int id)
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
-            client.DefaultRequestHeaders.Add("User-Agent", Kitsu.UserAgent);
-
-            var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
+            var resp = await _client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
             var json = await resp.Content.ReadAsStringAsync();
             
             var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
