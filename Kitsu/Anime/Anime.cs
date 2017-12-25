@@ -10,49 +10,32 @@ namespace Kitsu.Anime
     public class Anime
     {
         // Search for an anime with the name
-        public static async Task<AnimeModelByName> GetAnimeAsync(string name)
+        public static async Task<AnimeModelByName> GetAnimeAsync(string name, int offset = 0)
         {
-            var json = await RequestAnimeAsync(name);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
+            client.DefaultRequestHeaders.Add("User-Agent", Kitsu.UserAgent);
+
+            var json = await client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
             
             var anime = JsonConvert.DeserializeObject<AnimeModelByName>(json);
             return anime;
         }
 
-        // Get an anime by it's id
+        // Get an anime by its id
         public static async Task<AnimeModelById> GetAnimeAsync(int id)
         {
-            var json = await RequestAnimeAsync(id);
-            
-            var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
-            return anime;
-        }
-        
-        /* v Http requests v */
-        private const string UserAgent = "Kitsu/nuget_package - (https://github.com/KurozeroPB/Kitsu)";
-        
-        // Request anime by name
-        private static async Task<string> RequestAnimeAsync(string name)
-        {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
-            client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
-
-            var resp = await client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]=0");
-            return resp;
-        }
-
-        // Request anime by id
-        private static async Task<string> RequestAnimeAsync(int id)
-        {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
-            client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+            client.DefaultRequestHeaders.Add("User-Agent", Kitsu.UserAgent);
 
             var resp = await client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
             var json = await resp.Content.ReadAsStringAsync();
-            return json;
+            
+            var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
+            return anime;
         }
     }
 }
