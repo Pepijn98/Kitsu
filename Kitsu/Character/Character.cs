@@ -11,7 +11,7 @@ namespace Kitsu.Character
         private readonly HttpClient _client = Kitsu.Client();
         
         // Search for a character with his/her name
-        public async Task<CharacterModelByName> GetMangaAsync(string name)
+        public async Task<CharacterModelByName> GetCharacterAsync(string name)
         {
             var json = await _client.GetStringAsync($"https://kitsu.io/api/edge/characters?filter[name]={name}");
             
@@ -20,7 +20,7 @@ namespace Kitsu.Character
         }
 
         // Search for a character with his/her id
-        public async Task<CharacterModelById> GetMangaAsync(int id)
+        public async Task<CharacterModelById> GetCharacterAsync(int id)
         {
             var resp = await _client.GetAsync($"https://kitsu.io/api/edge/characters/{id}");
             var json = await resp.Content.ReadAsStringAsync();
