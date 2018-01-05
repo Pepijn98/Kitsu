@@ -19,6 +19,7 @@ namespace KitsuTest
         private async Task RunAsync()
         {
             // Also has a string overload for getting anime by name
+            // Note: the string overload doesn't have an Errors property since kitsu doesn't return errors properly when searching by name
             var anime = await Anime.GetAnimeAsync(5);
 
             // Logs the anime title if there are no errors
