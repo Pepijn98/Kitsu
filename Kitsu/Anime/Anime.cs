@@ -20,7 +20,7 @@ namespace Kitsu.Anime
         }
 
         // Get an anime by its id
-        public async Task<AnimeModelById> GetAnimeAsync(int id)
+        public static async Task<AnimeModelById> GetAnimeAsync(int id)
         {
             var resp = await Client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
             var json = await resp.Content.ReadAsStringAsync();
