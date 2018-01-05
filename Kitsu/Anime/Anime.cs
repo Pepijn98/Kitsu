@@ -8,12 +8,12 @@ namespace Kitsu.Anime
 {
     public class Anime
     {
-        private readonly HttpClient _client = Kitsu.Client();
+        private static readonly HttpClient Client = Kitsu.Client();
         
         // Search for an anime with the name
-        public async Task<AnimeModelByName> GetAnimeAsync(string name, int offset = 0)
+        public static async Task<AnimeModelByName> GetAnimeAsync(string name, int offset = 0)
         {
-            var json = await _client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
+            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
             
             var anime = JsonConvert.DeserializeObject<AnimeModelByName>(json);
             return anime;
@@ -22,7 +22,7 @@ namespace Kitsu.Anime
         // Get an anime by its id
         public async Task<AnimeModelById> GetAnimeAsync(int id)
         {
-            var resp = await _client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
+            var resp = await Client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
             var json = await resp.Content.ReadAsStringAsync();
             
             var anime = JsonConvert.DeserializeObject<AnimeModelById>(json);
