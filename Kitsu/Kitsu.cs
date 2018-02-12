@@ -5,7 +5,7 @@ namespace Kitsu
 {
     public static class Kitsu
     {
-        private const string UserAgent = "Kitsu-nuget_package/v1.0.2 - (https://github.com/KurozeroPB/Kitsu)";
+        private const string UserAgent = "Kitsu-nuget_package/v1.0.3 - (https://github.com/KurozeroPB/Kitsu)";
 
         internal static HttpClient Client()
         {

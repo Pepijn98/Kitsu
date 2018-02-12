@@ -1,21 +1,25 @@
-﻿using Kitsu.Models;
+﻿using System.Collections.Generic;
+using Kitsu.Models;
 // ReSharper disable UnusedMemberInSuper.Global
 
 namespace Kitsu.Interfaces
 {
     public interface ICharacterByName
     {
-        string Id { get; }
-        string Type { get; }
-        CharacterAttributesModel Attributes { get; }
+        List<CharacterDataModel> Data { get; }
     }
 
     public interface ICharacterById
     {
+        CharacterDataModel Data { get; }
+        CharacterErrorModel[] Errors { get; }
+    }
+    
+    public interface ICharacterData
+    {
         string Id { get; }
         string Type { get; }
         CharacterAttributesModel Attributes { get; }
-        CharacterErrorModel[] Errors { get; }
     }
 
     public interface ICharacterAttributes

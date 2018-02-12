@@ -11,21 +11,21 @@ namespace Kitsu.Character
         private static readonly HttpClient Client = Kitsu.Client();
         
         // Search for a character with his/her name
-        public static async Task<CharacterModelByName> GetCharacterAsync(string name)
+        public static async Task<CharacterByNameModel> GetCharacterAsync(string name)
         {
             var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/characters?filter[name]={name}");
             
-            var character = JsonConvert.DeserializeObject<CharacterModelByName>(json);
+            var character = JsonConvert.DeserializeObject<CharacterByNameModel>(json);
             return character;
         }
 
         // Search for a character with his/her id
-        public static async Task<CharacterModelById> GetCharacterAsync(int id)
+        public static async Task<CharacterByIdModel> GetCharacterAsync(int id)
         {
             var resp = await Client.GetAsync($"https://kitsu.io/api/edge/characters/{id}");
             var json = await resp.Content.ReadAsStringAsync();
             
-            var character = JsonConvert.DeserializeObject<CharacterModelById>(json);
+            var character = JsonConvert.DeserializeObject<CharacterByIdModel>(json);
             return character;
         }
     }

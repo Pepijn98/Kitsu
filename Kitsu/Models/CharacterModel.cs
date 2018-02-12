@@ -1,33 +1,34 @@
-﻿using Kitsu.Interfaces;
+﻿using System.Collections.Generic;
+using Kitsu.Interfaces;
 using Newtonsoft.Json;
 
 namespace Kitsu.Models
 {
-    public class CharacterModelByName : ICharacterByName
+    public class CharacterByNameModel : ICharacterByName
     {
-        [JsonProperty("id")]
-        public string Id { get; private set; }
-        
-        [JsonProperty("type")]
-        public string Type { get; private set; }
-        
-        [JsonProperty("attributes")]
-        public CharacterAttributesModel Attributes { get; private set; }
+        [JsonProperty("data")]
+        public List<CharacterDataModel> Data { get; private set; }
     }
-
-    public class CharacterModelById : ICharacterById
+    
+    public class CharacterByIdModel : ICharacterById
     {
-        [JsonProperty("id")]
-        public string Id { get; private set; }
-        
-        [JsonProperty("type")]
-        public string Type { get; private set; }
-        
-        [JsonProperty("attributes")]
-        public CharacterAttributesModel Attributes { get; private set; }
+        [JsonProperty("data")]
+        public CharacterDataModel Data { get; private set; }
 
         [JsonProperty("errors")]
         public CharacterErrorModel[] Errors { get; private set; }
+    }
+    
+    public class CharacterDataModel : ICharacterData
+    {
+        [JsonProperty("id")]
+        public string Id { get; private set; }
+        
+        [JsonProperty("type")]
+        public string Type { get; private set; }
+        
+        [JsonProperty("attributes")]
+        public CharacterAttributesModel Attributes { get; private set; }
     }
 
     public class CharacterAttributesModel : ICharacterAttributes
