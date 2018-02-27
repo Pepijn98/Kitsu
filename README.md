@@ -32,7 +32,7 @@ namespace KitsuTest
 ```
 
 ### TODO
-* Support getting users <!-- https://kitsu.docs.apiary.io/#reference/users/users -->
+* ~~Support getting users~~ <!-- https://kitsu.docs.apiary.io/#reference/users/users -->
 * Support searching for groups using query filter <!-- https://kitsu.io/api/edge/groups?filter[query]=<USER_QUERY> -->
 * Support fetching trending anime,manga,drama <!-- https://kitsu.docs.apiary.io/#reference/media/trending-anime/fetch-collection -->
 * Support getting site annoucements <!-- https://kitsu.docs.apiary.io/#reference/site-announcements/site-announcements -->
