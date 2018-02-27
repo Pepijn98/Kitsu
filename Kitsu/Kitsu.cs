@@ -15,7 +15,6 @@ namespace Kitsu
             var client = new HttpClient {BaseAddress = new Uri("https://kitsu.io/api/edge")};
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
-            client.DefaultRequestHeaders.Add("Content-Type", "application/vnd.api+json");
             client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
             return client;
         }
