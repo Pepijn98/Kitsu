@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Kitsu.Models;
 // ReSharper disable UnusedMemberInSuper.Global
 
-namespace Kitsu.Interfaces
+namespace Kitsu.Anime
 {
     public interface IAnimeByName
     {

@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
-using Kitsu.Interfaces;
 using Newtonsoft.Json;
 
-namespace Kitsu.Models
+namespace Kitsu.Anime
 {
-    public class AnimeModelByName : IAnimeByName
+    public class AnimeByNameModel : IAnimeByName
     {
         [JsonProperty("data")]
         public List<AnimeDataModel> Data { get; private set; }
     }
     
-    public class AnimeModelById : IAnimeById
+    public class AnimeByIdModel : IAnimeById
     {
         [JsonProperty("data")]
         public AnimeDataModel Data { get; private set; }

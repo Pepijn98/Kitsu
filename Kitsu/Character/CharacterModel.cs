@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Kitsu.Interfaces;
 using Newtonsoft.Json;
 
-namespace Kitsu.Models
+namespace Kitsu.Character
 {
     public class CharacterByNameModel : ICharacterByName
     {
