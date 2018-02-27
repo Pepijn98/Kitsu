@@ -48,6 +48,7 @@ namespace Kitsu.User
         string Title { get; }
         bool ProfileCompleted { get; }
         bool FeedCompleted { get; }
+        string Website { get; }
         UserAvatarModel Avatar { get; }
         UserCoverImageModel CoverImage { get; }
         string RatingSystem { get; }

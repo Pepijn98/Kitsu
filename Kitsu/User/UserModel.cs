@@ -107,6 +107,9 @@ namespace Kitsu.User
         [JsonProperty("feedCompleted")]
         public bool FeedCompleted { get; private set; }
         
+        [JsonProperty("website")]
+        public string Website { get; private set; }
+        
         [JsonProperty("avatar")]
         public UserAvatarModel Avatar { get; private set; }
         

@@ -28,14 +28,14 @@ namespace Kitsu.User
                         break;
             }
 
-            var json = await Client.GetStringAsync($"/users?[{f}]={text}");
+            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?[{f}]={text}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
             return user;
         }
 
         public static async Task<UserByIdModel> GetUserAsync(int id)
         {
-            var resp = await Client.GetAsync($"/users/{id}");
+            var resp = await Client.GetAsync($"https://kitsu.io/api/edge/users/{id}");
             var json = await resp.Content.ReadAsStringAsync();
             
             var user = JsonConvert.DeserializeObject<UserByIdModel>(json);
