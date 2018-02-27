@@ -28,7 +28,7 @@ namespace Kitsu.User
                         break;
             }
 
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?[{f}]={text}");
+            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
             return user;
         }
