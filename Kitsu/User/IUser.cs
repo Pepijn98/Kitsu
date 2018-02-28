@@ -19,7 +19,7 @@ namespace Kitsu.User
         string Id { get; }
         string Type { get; }
         UserAttributesModel Attributes { get; }
-        object Relationships { get; }
+        UserRelationshipsModel Relationships { get; }
     }
 
     public interface IUserAttributes

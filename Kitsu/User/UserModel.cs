@@ -30,7 +30,7 @@ namespace Kitsu.User
         public UserAttributesModel Attributes { get; private set; }
         
         [JsonProperty("relationships")]
-        public object Relationships { get; private set; }
+        public UserRelationshipsModel Relationships { get; private set; }
     }
 
     public class UserAttributesModel : IUserAttributes
