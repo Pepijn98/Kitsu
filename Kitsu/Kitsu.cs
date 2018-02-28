@@ -9,6 +9,10 @@ namespace Kitsu
         public const string Version = "1.1.4";
         private static readonly string UserAgent = $"Kitsu/v{Version} NugetPackage (https://github.com/KurozeroPB/Kitsu)";
 
+        /// <summary>
+        /// The beautiful http client
+        /// </summary>
+        /// <returns>HttpClient with good headers</returns>
         internal static HttpClient Client()
         {
             var client = new HttpClient();

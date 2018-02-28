@@ -9,7 +9,11 @@ namespace Kitsu.Manga
     {
         private static readonly HttpClient Client = Kitsu.Client();
         
-        // Search for a manga with the name
+        /// <summary>
+        /// Search for a manga with the name
+        /// </summary>
+        /// <param name="name">Manga name</param>
+        /// <returns>List with manga data objects</returns>
         public static async Task<MangaByNameModel> GetMangaAsync(string name)
         {
             var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/manga?filter[text]={name}");
@@ -18,7 +22,12 @@ namespace Kitsu.Manga
             return manga;
         }
         
-        // Search for a manga with the name and page offset
+        /// <summary>
+        /// Search for a manga with the name and page offset
+        /// </summary>
+        /// <param name="name">Manga name</param>
+        /// <param name="offset">Page offset</param>
+        /// <returns>List with manga data objects</returns>
         public static async Task<MangaByNameModel> GetMangaAsync(string name, int offset)
         {
             var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/manga?filter[text]={name}&page[offset]={offset}");
@@ -27,7 +36,11 @@ namespace Kitsu.Manga
             return manga;
         }
 
-        // Get a manga by its id
+        /// <summary>
+        /// Search for a manga with its id
+        /// </summary>
+        /// <param name="id">Manga id</param>
+        /// <returns>Object with manga data</returns>
         public static async Task<MangaByIdModel> GetMangaAsync(int id)
         {
             var resp = await Client.GetAsync($"https://kitsu.io/api/edge/manga/{id}");

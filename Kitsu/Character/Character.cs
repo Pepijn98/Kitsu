@@ -9,7 +9,11 @@ namespace Kitsu.Character
     {
         private static readonly HttpClient Client = Kitsu.Client();
         
-        // Search for a character with his/her name
+        /// <summary>
+        /// Search for a character with his/her name
+        /// </summary>
+        /// <param name="name">Character name</param>
+        /// <returns>List with character data objects</returns>
         public static async Task<CharacterByNameModel> GetCharacterAsync(string name)
         {
             var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/characters?filter[name]={name}");
@@ -18,7 +22,12 @@ namespace Kitsu.Character
             return character;
         }
         
-        // Search for a character with his/her name and page offset
+        /// <summary>
+        /// Search for a character with his/her name and page offset
+        /// </summary>
+        /// <param name="name">Character name</param>
+        /// <param name="offset">Page offset</param>
+        /// <returns>List with character data objects</returns>
         public static async Task<CharacterByNameModel> GetCharacterAsync(string name, int offset)
         {
             var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/characters?filter[name]={name}&page[offset]={offset}");
@@ -27,7 +36,11 @@ namespace Kitsu.Character
             return character;
         }
 
-        // Search for a character with his/her id
+        /// <summary>
+        /// Search for a character with his/her id
+        /// </summary>
+        /// <param name="id">Character id</param>
+        /// <returns>Object with character data</returns>
         public static async Task<CharacterByIdModel> GetCharacterAsync(int id)
         {
             var resp = await Client.GetAsync($"https://kitsu.io/api/edge/characters/{id}");
