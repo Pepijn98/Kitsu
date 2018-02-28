@@ -1,0 +1,14 @@
+version: '1.0.{build}'
+image: Visual Studio 2017
+branches:
+  only:
+  - master
+init:
+  - cmd: git config --global core.autoctrlf true
+install:
+  # Nothing to be done here
+before_build:
+  - cmd: dotnet --version
+  - cmd: dotnet restore ./Kitsu/Kitsu.csproj --verbosity m
+build_script:
+  - cmd: dotnet publish ./Kitsu/Kitsu.csproj
