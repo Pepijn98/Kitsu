@@ -12,3 +12,13 @@ before_build:
   - cmd: dotnet restore ./Kitsu/Kitsu.csproj --verbosity m
 build_script:
   - cmd: dotnet publish ./Kitsu/Kitsu.csproj
+after_build:
+  # Nothing to be done here either
+artifacts:
+ - path: '\Kitsu\bin\Debug\netstandard2.0\publish'
+   name: Kitsu
+   type: WebDeployPackage
+clone_depth: 1
+on_finish :
+  # Nothing to be done here either
+deploy: off
