@@ -30,7 +30,7 @@ namespace Kitsu.User
         public UserAttributesModel Attributes { get; private set; }
         
         [JsonProperty("relationships")]
-        public object Relationships { get; private set; }
+        public UserRelationshipsModel Relationships { get; private set; }
     }
 
     public class UserAttributesModel : IUserAttributes
@@ -157,6 +157,66 @@ namespace Kitsu.User
         
         [JsonProperty("original")]
         public string Original { get; private set; }
+    }
+    
+    public class UserRelationshipsModel : IUserRelationships
+    {
+        [JsonProperty("waifu")]
+        public UserRelationshipModel Waifu { get; private set; }
+        
+        [JsonProperty("pinnedPosts")]
+        public UserRelationshipModel PinnedPost { get; private set; }
+        
+        [JsonProperty("followers")]
+        public UserRelationshipModel Followers { get; private set; }
+        
+        [JsonProperty("following")]
+        public UserRelationshipModel Following { get; private set; }
+        
+        [JsonProperty("blocks")]
+        public UserRelationshipModel Blocks { get; private set; }
+        
+        [JsonProperty("linkedAccounts")]
+        public UserRelationshipModel LinkedAccounts { get; private set; }
+        
+        [JsonProperty("profileLinks")]
+        public UserRelationshipModel ProfileLinks { get; private set; }
+        
+        [JsonProperty("userRoles")]
+        public UserRelationshipModel UserRoles { get; private set; }
+        
+        [JsonProperty("libraryEntries")]
+        public UserRelationshipModel LibraryEntries { get; private set; }
+        
+        [JsonProperty("favorites")]
+        public UserRelationshipModel Favorites { get; private set; }
+        
+        [JsonProperty("reviews")]
+        public UserRelationshipModel Reviews { get; private set; }
+        
+        [JsonProperty("stats")]
+        public UserRelationshipModel Stats { get; private set; }
+        
+        [JsonProperty("notificationSettings")]
+        public UserRelationshipModel NotificationSettings { get; private set; }
+        
+        [JsonProperty("oneSignalPlayers")]
+        public UserRelationshipModel OneSignalPlayers { get; private set; }
+    }
+    
+    public class UserRelationshipModel : IUserRelationship
+    {
+        [JsonProperty("links")]
+        public UserRelationshipLinksModel Links { get; private set; }
+    }
+
+    public class UserRelationshipLinksModel : IUserRelationshipLinks
+    {
+        [JsonProperty("self")]
+        public string Self { get; private set; }
+        
+        [JsonProperty("related")]
+        public string Related { get; private set; }
     }
 
     public class UserError : IUserError

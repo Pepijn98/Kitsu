@@ -2,10 +2,11 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable RedundantCaseLabel
 
 namespace Kitsu.User
 {
-    public class User
+    public static class User
     {
         private static readonly HttpClient Client = Kitsu.Client();
 
@@ -14,21 +15,41 @@ namespace Kitsu.User
             string f;
             switch (filter)
             {
-                    case FilterType.Name:
-                        f = "name";
-                        break;
-                    case FilterType.Query:
-                        f = "query";
-                        break;
-                    case FilterType.Slug:
-                        f = "slug";
-                        break;
-                    default:
-                        f = "name";
-                        break;
+                case FilterType.Slug:
+                    f = "slug";
+                    break;
+                case FilterType.Query:
+                    f = "query";
+                    break;
+                case FilterType.Name:
+                default:
+                    f = "name";
+                    break;
             }
 
             var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}");
+            var user = JsonConvert.DeserializeObject<UserModel>(json);
+            return user;
+        }
+        
+        public static async Task<UserModel> GetUserAsync(string text, FilterType filter, int offset)
+        {
+            string f;
+            switch (filter)
+            {
+                case FilterType.Slug:
+                    f = "slug";
+                    break;
+                case FilterType.Query:
+                    f = "query";
+                    break;
+                case FilterType.Name:
+                default:
+                    f = "name";
+                    break;
+            }
+
+            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}&page[offset]={offset}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
             return user;
         }

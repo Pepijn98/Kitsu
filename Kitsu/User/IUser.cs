@@ -19,7 +19,7 @@ namespace Kitsu.User
         string Id { get; }
         string Type { get; }
         UserAttributesModel Attributes { get; }
-        object Relationships { get; }
+        UserRelationshipsModel Relationships { get; }
     }
 
     public interface IUserAttributes
@@ -73,6 +73,35 @@ namespace Kitsu.User
         string Original { get; }
     }
 
+    public interface IUserRelationships
+    {
+        UserRelationshipModel Waifu { get; }
+        UserRelationshipModel PinnedPost { get; }
+        UserRelationshipModel Followers { get; }
+        UserRelationshipModel Following { get; }
+        UserRelationshipModel Blocks { get; }
+        UserRelationshipModel LinkedAccounts { get; }
+        UserRelationshipModel ProfileLinks{ get; }
+        UserRelationshipModel UserRoles { get; }
+        UserRelationshipModel LibraryEntries { get; }
+        UserRelationshipModel Favorites { get; }
+        UserRelationshipModel Reviews { get; }
+        UserRelationshipModel Stats { get; }
+        UserRelationshipModel NotificationSettings { get; }
+        UserRelationshipModel OneSignalPlayers { get; }
+    }
+
+    public interface IUserRelationship
+    {
+        UserRelationshipLinksModel Links { get; }
+    }
+
+    public interface IUserRelationshipLinks
+    {
+        string Self { get; }
+        string Related { get; }
+    }
+    
     public interface IUserError
     {
         string Title { get; }

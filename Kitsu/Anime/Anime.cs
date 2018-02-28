@@ -5,12 +5,21 @@ using Newtonsoft.Json;
 
 namespace Kitsu.Anime
 {
-    public class Anime
+    public static class Anime
     {
         private static readonly HttpClient Client = Kitsu.Client();
         
         // Search for an anime with the name
-        public static async Task<AnimeByNameModel> GetAnimeAsync(string name, int offset = 0)
+        public static async Task<AnimeByNameModel> GetAnimeAsync(string name)
+        {
+            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}");
+            
+            var anime = JsonConvert.DeserializeObject<AnimeByNameModel>(json);
+            return anime;
+        }
+        
+        // Search for an anime with the name and page offset
+        public static async Task<AnimeByNameModel> GetAnimeAsync(string name, int offset)
         {
             var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
             
