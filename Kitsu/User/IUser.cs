@@ -76,7 +76,6 @@ namespace Kitsu.User
     public interface IUserRelationships
     {
         UserRelationshipModel Waifu { get; }
-        UserRelationshipModel Husbando { get; }
         UserRelationshipModel PinnedPost { get; }
         UserRelationshipModel Followers { get; }
         UserRelationshipModel Following { get; }

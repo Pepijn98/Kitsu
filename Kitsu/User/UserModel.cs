@@ -164,9 +164,6 @@ namespace Kitsu.User
         [JsonProperty("waifu")]
         public UserRelationshipModel Waifu { get; private set; }
         
-        [JsonProperty("husbando")]
-        public UserRelationshipModel Husbando { get; private set; }
-        
         [JsonProperty("pinnedPosts")]
         public UserRelationshipModel PinnedPost { get; private set; }
         
