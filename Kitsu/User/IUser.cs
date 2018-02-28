@@ -73,6 +73,36 @@ namespace Kitsu.User
         string Original { get; }
     }
 
+    public interface IUserRelationships
+    {
+        object WaifuModel { get; }
+        object HusbandoModel { get; }
+        object PinnedPostModel { get; }
+        object FollowersModel { get; }
+        object FollowingModel { get; }
+        object BlocksModel { get; }
+        object LinkedAccountsModel { get; }
+        object ProfileLinksModel { get; }
+        object UserRolesModel { get; }
+        object LibraryEntriesModel { get; }
+        object FavoritesModel { get; }
+        object ReviewsModel { get; }
+        object StatsModel { get; }
+        object NotificationSettingsModel { get; }
+        object OneSignalPlayersModel { get; }
+    }
+
+    public interface IUserRelationship
+    {
+        object UserRelationshipLinksModel { get; }
+    }
+
+    public interface IUserRelationshipLinks
+    {
+        string Self { get; }
+        string Related { get; }
+    }
+    
     public interface IUserError
     {
         string Title { get; }

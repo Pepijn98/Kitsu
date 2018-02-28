@@ -6,7 +6,7 @@ namespace Kitsu
     public static class Kitsu
     {
         // ReSharper disable once MemberCanBePrivate.Global
-        public const string Version = "1.1.3";
+        public const string Version = "1.1.4-alpha1";
         private static readonly string UserAgent = $"Kitsu/v{Version} NugetPackage (https://github.com/KurozeroPB/Kitsu)";
 
         internal static HttpClient Client()

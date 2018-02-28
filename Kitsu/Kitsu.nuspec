@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Kitsu</id>
-        <version>1.1.3</version>
+        <version>1.1.4-alpha1</version>
         <title>Kitsu</title>
         <authors>Kurozero</authors>
         <owners>Kurozero</owners>
@@ -10,7 +10,7 @@
         <iconUrl>https://kurozero.xyz/images/projects/kitsu.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>An api wrapper for kitsu.io</description>
-        <releaseNotes>Added support for getting users by id or search by name,slug,query</releaseNotes>
+        <releaseNotes>Testing relationship deserialization</releaseNotes>
         <copyright>Copyright 2018</copyright>
         <tags>C# csharp kitsu anime manga dotnet dotnetcore novel character ani mal myanimelist</tags>
         <dependencies>
