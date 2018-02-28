@@ -162,144 +162,56 @@ namespace Kitsu.User
     public class UserRelationshipsModel : IUserRelationships
     {
         [JsonProperty("waifu")]
-        public object WaifuModel { get; private set; }
+        public UserRelationshipModel Waifu { get; private set; }
         
         [JsonProperty("husbando")]
-        public object HusbandoModel { get; private set; }
+        public UserRelationshipModel Husbando { get; private set; }
         
         [JsonProperty("pinnedPosts")]
-        public object PinnedPostModel { get; private set; }
+        public UserRelationshipModel PinnedPost { get; private set; }
         
         [JsonProperty("followers")]
-        public object FollowersModel { get; private set; }
+        public UserRelationshipModel Followers { get; private set; }
         
         [JsonProperty("following")]
-        public object FollowingModel { get; private set; }
+        public UserRelationshipModel Following { get; private set; }
         
         [JsonProperty("blocks")]
-        public object BlocksModel { get; private set; }
+        public UserRelationshipModel Blocks { get; private set; }
         
         [JsonProperty("linkedAccounts")]
-        public object LinkedAccountsModel { get; private set; }
+        public UserRelationshipModel LinkedAccounts { get; private set; }
         
         [JsonProperty("profileLinks")]
-        public object ProfileLinksModel { get; private set; }
+        public UserRelationshipModel ProfileLinks { get; private set; }
         
         [JsonProperty("userRoles")]
-        public object UserRolesModel { get; private set; }
+        public UserRelationshipModel UserRoles { get; private set; }
         
         [JsonProperty("libraryEntries")]
-        public object LibraryEntriesModel { get; private set; }
+        public UserRelationshipModel LibraryEntries { get; private set; }
         
         [JsonProperty("favorites")]
-        public object FavoritesModel { get; private set; }
+        public UserRelationshipModel Favorites { get; private set; }
         
         [JsonProperty("reviews")]
-        public object ReviewsModel { get; private set; }
+        public UserRelationshipModel Reviews { get; private set; }
         
         [JsonProperty("stats")]
-        public object StatsModel { get; private set; }
+        public UserRelationshipModel Stats { get; private set; }
         
         [JsonProperty("notificationSettings")]
-        public object NotificationSettingsModel { get; private set; }
+        public UserRelationshipModel NotificationSettings { get; private set; }
         
         [JsonProperty("oneSignalPlayers")]
-        public object OneSignalPlayersModel { get; private set; }
+        public UserRelationshipModel OneSignalPlayers { get; private set; }
     }
     
-    // Start Relationships //
-
-    public class WaifuModel : IUserRelationship
+    public class UserRelationshipModel : IUserRelationship
     {
         [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
+        public UserRelationshipLinksModel Links { get; private set; }
     }
-
-    public class HusbandoModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-
-    public class PinnedPostModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class FollowersModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class FollowingModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class BlocksModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class LinkedAccountsModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class ProfileLinksModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class UserRolesModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class LibraryEntriesModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class FavoritesModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class ReviewsModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class StatsModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class NotificationSettingsModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    public class OneSignalPlayersModel : IUserRelationship
-    {
-        [JsonProperty("links")]
-        public object UserRelationshipLinksModel { get; private set; }
-    }
-    
-    // End Relationships //
 
     public class UserRelationshipLinksModel : IUserRelationshipLinks
     {

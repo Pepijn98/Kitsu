@@ -75,26 +75,26 @@ namespace Kitsu.User
 
     public interface IUserRelationships
     {
-        object WaifuModel { get; }
-        object HusbandoModel { get; }
-        object PinnedPostModel { get; }
-        object FollowersModel { get; }
-        object FollowingModel { get; }
-        object BlocksModel { get; }
-        object LinkedAccountsModel { get; }
-        object ProfileLinksModel { get; }
-        object UserRolesModel { get; }
-        object LibraryEntriesModel { get; }
-        object FavoritesModel { get; }
-        object ReviewsModel { get; }
-        object StatsModel { get; }
-        object NotificationSettingsModel { get; }
-        object OneSignalPlayersModel { get; }
+        UserRelationshipModel Waifu { get; }
+        UserRelationshipModel Husbando { get; }
+        UserRelationshipModel PinnedPost { get; }
+        UserRelationshipModel Followers { get; }
+        UserRelationshipModel Following { get; }
+        UserRelationshipModel Blocks { get; }
+        UserRelationshipModel LinkedAccounts { get; }
+        UserRelationshipModel ProfileLinks{ get; }
+        UserRelationshipModel UserRoles { get; }
+        UserRelationshipModel LibraryEntries { get; }
+        UserRelationshipModel Favorites { get; }
+        UserRelationshipModel Reviews { get; }
+        UserRelationshipModel Stats { get; }
+        UserRelationshipModel NotificationSettings { get; }
+        UserRelationshipModel OneSignalPlayers { get; }
     }
 
     public interface IUserRelationship
     {
-        object UserRelationshipLinksModel { get; }
+        UserRelationshipLinksModel Links { get; }
     }
 
     public interface IUserRelationshipLinks
