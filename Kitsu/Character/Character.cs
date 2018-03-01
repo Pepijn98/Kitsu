@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
 
-namespace Kitsu
+namespace Kitsu.Character
 {
     public static class Character
     {
