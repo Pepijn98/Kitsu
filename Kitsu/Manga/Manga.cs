@@ -42,5 +42,16 @@ namespace Kitsu.Manga
             var manga = JsonConvert.DeserializeObject<MangaByIdModel>(json);
             return manga;
         }
+        
+        /// <summary>
+        /// Get the trending manga
+        /// </summary>
+        /// <returns>List with manga data objects</returns>
+        public static async Task<MangaByNameModel> GetTrendingAsync()
+        {
+            var json = await Kitsu.Client.GetStringAsync("https://kitsu.io/api/edge/trending/manga");
+            var trending = JsonConvert.DeserializeObject<MangaByNameModel>(json);
+            return trending;
+        }
     }
 }

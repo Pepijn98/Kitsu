@@ -42,5 +42,16 @@ namespace Kitsu.Anime
             var anime = JsonConvert.DeserializeObject<AnimeByIdModel>(json);
             return anime;
         }
+
+        /// <summary>
+        /// Get the trending anime
+        /// </summary>
+        /// <returns>List with anime data objects</returns>
+        public static async Task<AnimeByNameModel> GetTrendingAsync()
+        {
+            var json = await Kitsu.Client.GetStringAsync("https://kitsu.io/api/edge/trending/anime");
+            var trending = JsonConvert.DeserializeObject<AnimeByNameModel>(json);
+            return trending;
+        }
     }
 }

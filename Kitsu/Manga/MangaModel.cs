@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Kitsu
+namespace Kitsu.Manga
 {
     public class MangaByNameModel : IMangaByName
     {
