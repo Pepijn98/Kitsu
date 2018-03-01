@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Kitsu.Group
+namespace Kitsu
 {
     public class GroupByQueryModel : IGroupByQuery
     {

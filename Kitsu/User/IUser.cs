@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 // ReSharper disable UnusedMemberInSuper.Global
 
-namespace Kitsu.User
+namespace Kitsu
 {
     public interface IUser
     {

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable RedundantCaseLabel
 
-namespace Kitsu.User
+namespace Kitsu
 {
     public static class User
     {

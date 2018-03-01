@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Kitsu.User
+namespace Kitsu
 {
     public class UserModel : IUser
     {

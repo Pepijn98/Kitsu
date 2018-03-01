@@ -10,7 +10,7 @@ namespace Kitsu
 {
     public class Kitsu
     {
-        public static readonly string Version = "1.2.0-alpha1";
+        public static readonly string Version = "1.2.0-alpha2";
         private static readonly string UserAgent = $"Kitsu/v{Version} NugetPackage (https://github.com/KurozeroPB/Kitsu)";
 
         internal static HttpClient Client;
