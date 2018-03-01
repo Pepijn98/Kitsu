@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
-// ReSharper disable RedundantCaseLabel
 
 namespace Kitsu.User
 {
@@ -16,8 +15,9 @@ namespace Kitsu.User
         public static async Task<UserModel> GetUserAsync(FilterType filter, string text)
         {
             var f = CheckType(filter);
-            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}");
+            var json = await Kitsu.Client.GetStringAsync($"users?filter[{f}]={text}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
+            if (user.Data.Count <= 0) { throw new NoDataFoundException($"No user was found with the {f} {text}"); }
             return user;
         }
         
@@ -31,8 +31,9 @@ namespace Kitsu.User
         public static async Task<UserModel> GetUserAsync(FilterType filter, string text, int offset)
         {
             var f = CheckType(filter);
-            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}&page[offset]={offset}");
+            var json = await Kitsu.Client.GetStringAsync($"users?filter[{f}]={text}&page[offset]={offset}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
+            if (user.Data.Count <= 0) { throw new NoDataFoundException($"No user was found with the {f} {text} and offset {offset}"); }
             return user;
         }
 
@@ -43,7 +44,7 @@ namespace Kitsu.User
         /// <returns>Object with user data</returns>
         public static async Task<UserByIdModel> GetUserAsync(int id)
         {
-            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/users/{id}");
+            var json = await Kitsu.Client.GetStringAsync($"users/{id}");
             var user = JsonConvert.DeserializeObject<UserByIdModel>(json);
             return user;
         }

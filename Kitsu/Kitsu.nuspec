@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Kitsu</id>
-        <version>1.2.0-beta1</version>
+        <version>1.3.0</version>
         <title>Kitsu</title>
         <authors>Kurozero</authors>
         <owners>Kurozero</owners>

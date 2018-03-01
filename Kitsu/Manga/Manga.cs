@@ -13,8 +13,9 @@ namespace Kitsu.Manga
         /// <returns>List with manga data objects</returns>
         public static async Task<MangaByNameModel> GetMangaAsync(string name)
         {
-            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/manga?filter[text]={name}");
+            var json = await Kitsu.Client.GetStringAsync($"manga?filter[text]={name}");
             var manga = JsonConvert.DeserializeObject<MangaByNameModel>(json);
+            if (manga.Data.Count <= 0) { throw new NoDataFoundException($"No manga was found with the query {manga}"); }
             return manga;
         }
         
@@ -26,8 +27,9 @@ namespace Kitsu.Manga
         /// <returns>List with manga data objects</returns>
         public static async Task<MangaByNameModel> GetMangaAsync(string name, int offset)
         {
-            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/manga?filter[text]={name}&page[offset]={offset}");
+            var json = await Kitsu.Client.GetStringAsync($"manga?filter[text]={name}&page[offset]={offset}");
             var manga = JsonConvert.DeserializeObject<MangaByNameModel>(json);
+            if (manga.Data.Count <= 0) { throw new NoDataFoundException($"No manga was found with the query {manga} and offset {offset}"); }
             return manga;
         }
 
@@ -38,7 +40,7 @@ namespace Kitsu.Manga
         /// <returns>Object with manga data</returns>
         public static async Task<MangaByIdModel> GetMangaAsync(int id)
         {
-            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/manga/{id}");
+            var json = await Kitsu.Client.GetStringAsync($"manga/{id}");
             var manga = JsonConvert.DeserializeObject<MangaByIdModel>(json);
             return manga;
         }
@@ -49,8 +51,9 @@ namespace Kitsu.Manga
         /// <returns>List with manga data objects</returns>
         public static async Task<MangaByNameModel> GetTrendingAsync()
         {
-            var json = await Kitsu.Client.GetStringAsync("https://kitsu.io/api/edge/trending/manga");
+            var json = await Kitsu.Client.GetStringAsync("trending/manga");
             var trending = JsonConvert.DeserializeObject<MangaByNameModel>(json);
+            if (trending.Data.Count <= 0) { throw new NoDataFoundException("Could not find any trending manga"); }
             return trending;
         }
     }
