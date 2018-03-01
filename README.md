@@ -30,25 +30,33 @@ namespace KitsuTest
                 
             // With anime name
             // Note: Searching by name returns a list of anime objects and does not have the Errors property
-            var animes = await Anime.GetAnimeAsync("Fate/Apocrypha");
-            foreach (var ani in animes.Data)
+            // Since getting anime by name does not have the Errors property it will throw a NoDataFoundException
+            try
             {
-                if (ani.Attributes.Titles.EnJp != "")
+                var animes = await Anime.GetAnimeAsync("Fate/Apocrypha");
+                foreach (var ani in animes.Data)
                 {
-                    Console.WriteLine(ani.Attributes.Titles.EnJp);
-                    /* =>
-                     * Fate/Apocrypha
-                     * Fate/Apocrypha: Seihai Taisen Douran-hen
-                     * Fate/Zero
-                     * Fate/stay night: Unlimited Blade Works
-                     * Fate/stay night: Unlimited Blade Works 2nd Season
-                     * Fate/Zero 2nd Season
-                     * Fate/Prototype
-                     * Fate/stay night
-                     * Ai Yori Aoshi: Enishi
-                     * Bayonetta: Bloody Fate
-                     */
+                    if (ani.Attributes.Titles.EnJp != "")
+                    {
+                        Console.WriteLine(ani.Attributes.Titles.EnJp);
+                        /* =>
+                         * Fate/Apocrypha
+                         * Fate/Apocrypha: Seihai Taisen Douran-hen
+                         * Fate/Zero
+                         * Fate/stay night: Unlimited Blade Works
+                         * Fate/stay night: Unlimited Blade Works 2nd Season
+                         * Fate/Zero 2nd Season
+                         * Fate/Prototype
+                         * Fate/stay night
+                         * Ai Yori Aoshi: Enishi
+                         * Bayonetta: Bloody Fate
+                         */
+                    }
                 }
+            }
+            catch(NoDataFoundException e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }
