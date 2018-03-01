@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
 
@@ -7,32 +6,41 @@ namespace Kitsu.Character
 {
     public static class Character
     {
-        private static readonly HttpClient Client = Kitsu.Client();
-        
-        // Search for a character with his/her name
+        /// <summary>
+        /// Search for a character with his/her name
+        /// </summary>
+        /// <param name="name">Character name</param>
+        /// <returns>List with character data objects</returns>
         public static async Task<CharacterByNameModel> GetCharacterAsync(string name)
         {
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/characters?filter[name]={name}");
-            
+            var json = await Kitsu.Client.GetStringAsync($"characters?filter[name]={name}");
             var character = JsonConvert.DeserializeObject<CharacterByNameModel>(json);
+            if (character.Data.Count <= 0) { throw new NoDataFoundException($"No character was found with the name {name}"); }
             return character;
         }
         
-        // Search for a character with his/her name and page offset
+        /// <summary>
+        /// Search for a character with his/her name and page offset
+        /// </summary>
+        /// <param name="name">Character name</param>
+        /// <param name="offset">Page offset</param>
+        /// <returns>List with character data objects</returns>
         public static async Task<CharacterByNameModel> GetCharacterAsync(string name, int offset)
         {
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/characters?filter[name]={name}&page[offset]={offset}");
-            
+            var json = await Kitsu.Client.GetStringAsync($"characters?filter[name]={name}&page[offset]={offset}");
             var character = JsonConvert.DeserializeObject<CharacterByNameModel>(json);
+            if (character.Data.Count <= 0) { throw new NoDataFoundException($"No character was found with the name {name} and offset {offset}"); }
             return character;
         }
 
-        // Search for a character with his/her id
+        /// <summary>
+        /// Search for a character with his/her id
+        /// </summary>
+        /// <param name="id">Character id</param>
+        /// <returns>Object with character data</returns>
         public static async Task<CharacterByIdModel> GetCharacterAsync(int id)
         {
-            var resp = await Client.GetAsync($"https://kitsu.io/api/edge/characters/{id}");
-            var json = await resp.Content.ReadAsStringAsync();
-            
+            var json = await Kitsu.Client.GetStringAsync($"characters/{id}");
             var character = JsonConvert.DeserializeObject<CharacterByIdModel>(json);
             return character;
         }

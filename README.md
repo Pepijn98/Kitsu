@@ -1,6 +1,8 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/2ot3sf9evxcpdc8s?svg=true)](https://ci.appveyor.com/project/KurozeroPB/kitsu) 
-[![NuGet](https://img.shields.io/nuget/v/Kitsu.svg)](https://www.nuget.org/packages/Kitsu) 
+[![Build status](https://ci.appveyor.com/api/projects/status/2ot3sf9evxcpdc8s?svg=true)](https://ci.appveyor.com/project/KurozeroPB/kitsu)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b00c0d297934281ae9ecdd6155ac2f9)](https://www.codacy.com/app/KurozeroPB/Kitsu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KurozeroPB/Kitsu&amp;utm_campaign=Badge_Grade)
+
+[![NuGet](https://img.shields.io/nuget/vpre/Kitsu.svg)](https://www.nuget.org/packages/Kitsu)
+[![NuGet](https://img.shields.io/nuget/v/Kitsu.svg)](https://www.nuget.org/packages/Kitsu)
 
 # Kitsu
 A kitsu api wrapper written in C# .NET Core
@@ -20,23 +22,51 @@ namespace KitsuTest
 
         private async Task RunAsync()
         {
-            // Also has a string overload for getting anime by name
-            // Note: the string overload doesn't have an Errors property since kitsu doesn't return errors properly when searching by name
+            // With anime id
             var anime = await Anime.GetAnimeAsync(5);
-
-            // Logs the anime title if there are no errors
             Console.WriteLine(anime.Errors.Length >= 1
                 ? $"Error: {anime.Errors[0].Code}"
-                : anime.Data.Attributes.Titles.EnJp);
+                : anime.Data.Attributes.Titles.EnJp); //=> Beet the Vandel Buster
+                
+            // With anime name
+            // Note: Searching by name returns a list of anime objects and does not have the Errors property
+            // Since getting anime by name does not have the Errors property it will throw a NoDataFoundException
+            try
+            {
+                var animes = await Anime.GetAnimeAsync("Fate/Apocrypha");
+                foreach (var ani in animes.Data)
+                {
+                    if (ani.Attributes.Titles.EnJp != "")
+                    {
+                        Console.WriteLine(ani.Attributes.Titles.EnJp);
+                        /* =>
+                         * Fate/Apocrypha
+                         * Fate/Apocrypha: Seihai Taisen Douran-hen
+                         * Fate/Zero
+                         * Fate/stay night: Unlimited Blade Works
+                         * Fate/stay night: Unlimited Blade Works 2nd Season
+                         * Fate/Zero 2nd Season
+                         * Fate/Prototype
+                         * Fate/stay night
+                         * Ai Yori Aoshi: Enishi
+                         * Bayonetta: Bloody Fate
+                         */
+                    }
+                }
+            }
+            catch(NoDataFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
 ```
 
 ### TODO
-* ~~Support getting users~~ <!-- https://kitsu.docs.apiary.io/#reference/users/users -->
-* Support searching for groups using query filter <!-- https://kitsu.io/api/edge/groups?filter[query]=<USER_QUERY> -->
-* Support fetching trending anime,manga,drama <!-- https://kitsu.docs.apiary.io/#reference/media/trending-anime/fetch-collection -->
-* Support getting site annoucements <!-- https://kitsu.docs.apiary.io/#reference/site-announcements/site-announcements -->
-* Support getting producers data <!-- -->
-* Support getting dramas by name and id <!-- -->
+* ~~Support getting users~~
+* ~~Support searching for groups using query filter~~
+* ~~Support fetching trending anime,manga~~
+* ~~Support getting site annoucements~~
+* Support getting producers data
+* Support getting dramas by name and id + trending dramas

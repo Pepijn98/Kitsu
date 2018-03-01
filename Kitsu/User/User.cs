@@ -1,66 +1,72 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
-// ReSharper disable RedundantCaseLabel
 
 namespace Kitsu.User
 {
     public static class User
     {
-        private static readonly HttpClient Client = Kitsu.Client();
-
-        public static async Task<UserModel> GetUserAsync(string text, FilterType filter)
+        /// <summary>
+        /// Search for a user with either a search query, their name or slug
+        /// </summary>
+        /// <param name="filter">Filter type</param>
+        /// <param name="text">The query, name or slug</param>
+        /// <returns>List with user data objects</returns>
+        public static async Task<UserModel> GetUserAsync(FilterType filter, string text)
         {
-            string f;
-            switch (filter)
-            {
-                case FilterType.Slug:
-                    f = "slug";
-                    break;
-                case FilterType.Query:
-                    f = "query";
-                    break;
-                case FilterType.Name:
-                default:
-                    f = "name";
-                    break;
-            }
-
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}");
+            var f = CheckType(filter);
+            var json = await Kitsu.Client.GetStringAsync($"users?filter[{f}]={text}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
+            if (user.Data.Count <= 0) { throw new NoDataFoundException($"No user was found with the {f} {text}"); }
             return user;
         }
         
-        public static async Task<UserModel> GetUserAsync(string text, FilterType filter, int offset)
+        /// <summary>
+        /// Search for a user with either a search query, their name or slug and page offset
+        /// </summary>
+        /// <param name="filter">Filter type</param>
+        /// <param name="text">The query, name or slug</param>
+        /// <param name="offset">Page offset</param>
+        /// <returns>List with user data objects</returns>
+        public static async Task<UserModel> GetUserAsync(FilterType filter, string text, int offset)
         {
-            string f;
-            switch (filter)
-            {
-                case FilterType.Slug:
-                    f = "slug";
-                    break;
-                case FilterType.Query:
-                    f = "query";
-                    break;
-                case FilterType.Name:
-                default:
-                    f = "name";
-                    break;
-            }
-
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}&page[offset]={offset}");
+            var f = CheckType(filter);
+            var json = await Kitsu.Client.GetStringAsync($"users?filter[{f}]={text}&page[offset]={offset}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
+            if (user.Data.Count <= 0) { throw new NoDataFoundException($"No user was found with the {f} {text} and offset {offset}"); }
             return user;
         }
 
+        /// <summary>
+        /// Search for a user with his/her id
+        /// </summary>
+        /// <param name="id">User id</param>
+        /// <returns>Object with user data</returns>
         public static async Task<UserByIdModel> GetUserAsync(int id)
         {
-            var resp = await Client.GetAsync($"https://kitsu.io/api/edge/users/{id}");
-            var json = await resp.Content.ReadAsStringAsync();
-            
+            var json = await Kitsu.Client.GetStringAsync($"users/{id}");
             var user = JsonConvert.DeserializeObject<UserByIdModel>(json);
             return user;
+        }
+        
+        /// <summary>
+        /// Convert enum FilterType to string that is usable in the request url
+        /// </summary>
+        /// <param name="filter">FilterType</param>
+        /// <returns>Filter string</returns>
+        private static string CheckType(FilterType filter)
+        {
+            switch (filter)
+            {
+                case FilterType.Slug:
+                    return "slug";
+                case FilterType.Query:
+                    return "query";
+                case FilterType.Name:
+                    return "name";
+                default:
+                    throw new System.ArgumentException("Somehow you managed to input a non-existing FilterType");
+            }
         }
     }
 
