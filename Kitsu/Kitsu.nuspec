@@ -10,7 +10,7 @@
         <iconUrl>https://kurozero.xyz/images/projects/kitsu.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>An api wrapper for kitsu.io</description>
-        <releaseNotes>Group search, Code styling, Trending anime and manga</releaseNotes>
+        <releaseNotes>Group search, trending anime and manga, exception when no data, site annoucements</releaseNotes>
         <copyright>Copyright 2018</copyright>
         <tags>C# csharp kitsu anime manga dotnet dotnetcore novel character ani mal myanimelist</tags>
         <dependencies>
