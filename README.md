@@ -1,5 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/2ot3sf9evxcpdc8s?svg=true)](https://ci.appveyor.com/project/KurozeroPB/kitsu) 
-[![NuGet](https://img.shields.io/nuget/v/Kitsu.svg)](https://www.nuget.org/packages/Kitsu) 
+[![NuGet](https://img.shields.io/nuget/v/Kitsu.svg)](https://www.nuget.org/packages/Kitsu)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b00c0d297934281ae9ecdd6155ac2f9)](https://www.codacy.com/app/KurozeroPB/Kitsu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KurozeroPB/Kitsu&amp;utm_campaign=Badge_Grade)
 
 # Kitsu

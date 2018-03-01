@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable RedundantCaseLabel
@@ -8,18 +7,16 @@ namespace Kitsu.User
 {
     public static class User
     {
-        private static readonly HttpClient Client = Kitsu.Client();
-
         /// <summary>
         /// Search for a user with either a search query, their name or slug
         /// </summary>
-        /// <param name="text">The Query, name or slug</param>
         /// <param name="filter">Filter type</param>
+        /// <param name="text">The query, name or slug</param>
         /// <returns>List with user data objects</returns>
-        public static async Task<UserModel> GetUserAsync(string text, FilterType filter)
+        public static async Task<UserModel> GetUserAsync(FilterType filter, string text)
         {
             var f = CheckType(filter);
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}");
+            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
             return user;
         }
@@ -27,14 +24,14 @@ namespace Kitsu.User
         /// <summary>
         /// Search for a user with either a search query, their name or slug and page offset
         /// </summary>
-        /// <param name="text">The Query, name or slug</param>
         /// <param name="filter">Filter type</param>
+        /// <param name="text">The query, name or slug</param>
         /// <param name="offset">Page offset</param>
         /// <returns>List with user data objects</returns>
-        public static async Task<UserModel> GetUserAsync(string text, FilterType filter, int offset)
+        public static async Task<UserModel> GetUserAsync(FilterType filter, string text, int offset)
         {
             var f = CheckType(filter);
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}&page[offset]={offset}");
+            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/users?filter[{f}]={text}&page[offset]={offset}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
             return user;
         }
@@ -46,8 +43,7 @@ namespace Kitsu.User
         /// <returns>Object with user data</returns>
         public static async Task<UserByIdModel> GetUserAsync(int id)
         {
-            var resp = await Client.GetAsync($"https://kitsu.io/api/edge/users/{id}");
-            var json = await resp.Content.ReadAsStringAsync();
+            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/users/{id}");
             var user = JsonConvert.DeserializeObject<UserByIdModel>(json);
             return user;
         }

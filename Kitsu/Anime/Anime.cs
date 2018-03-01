@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 // ReSharper disable UnusedMember.Global
 
@@ -7,8 +6,6 @@ namespace Kitsu.Anime
 {
     public static class Anime
     {
-        private static readonly HttpClient Client = Kitsu.Client();
-        
         /// <summary>
         /// Search for an anime with the name
         /// </summary>
@@ -16,8 +13,7 @@ namespace Kitsu.Anime
         /// <returns>List with anime data objects</returns>
         public static async Task<AnimeByNameModel> GetAnimeAsync(string name)
         {
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}");
-            
+            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}");
             var anime = JsonConvert.DeserializeObject<AnimeByNameModel>(json);
             return anime;
         }
@@ -30,8 +26,7 @@ namespace Kitsu.Anime
         /// <returns>List with anime data objects</returns>
         public static async Task<AnimeByNameModel> GetAnimeAsync(string name, int offset)
         {
-            var json = await Client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
-            
+            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/anime?filter[text]={name}&page[offset]={offset}");
             var anime = JsonConvert.DeserializeObject<AnimeByNameModel>(json);
             return anime;
         }
@@ -43,9 +38,7 @@ namespace Kitsu.Anime
         /// <returns>Object with anime data</returns>
         public static async Task<AnimeByIdModel> GetAnimeAsync(int id)
         {
-            var resp = await Client.GetAsync($"https://kitsu.io/api/edge/anime/{id}");
-            var json = await resp.Content.ReadAsStringAsync();
-            
+            var json = await Kitsu.Client.GetStringAsync($"https://kitsu.io/api/edge/anime/{id}");
             var anime = JsonConvert.DeserializeObject<AnimeByIdModel>(json);
             return anime;
         }
