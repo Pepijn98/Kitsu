@@ -8,13 +8,13 @@
 A kitsu api wrapper written in C# .NET Core
 
 ## Example
-**.NET Core ConsoleApplication:**
+**C# .NET Core ConsoleApplication:**
 ```cs
 using System;
 using System.Threading.Tasks;
 using Kitsu.Anime;
 
-namespace KitsuTest
+namespace KitsuExample
 {
     public class Program
     {
@@ -61,6 +61,71 @@ namespace KitsuTest
         }
     }
 }
+```
+
+**VB .NET Core ConsoleApplication:**
+```vb
+Option Strict On
+Imports Kitsu
+' I never actually used VB so there might be a better way
+' But this is how I think it should be
+
+Module Program
+    Sub Main()
+        Dim prog As New Run()
+        prog.MainAsync().GetAwaiter().GetResult()
+    End Sub
+End Module
+
+Class Run
+    Public Async Function MainAsync() As Task
+        Try
+            Dim anime = Await Kitsu.Anime.Anime.GetAnimeAsync("Fate/Extra Last Encore")
+            Console.WriteLine(anime.Data.Item(0).Attributes.Synopsis)
+        Catch e As NoDataFoundException
+            Console.WriteLine(e.Message)
+        End Try
+    End Function
+End Class
+```
+
+**FSharp .NET Core ConsoleApplication:**
+```f#
+open System
+open System.Net
+open System.Threading.Tasks
+open Kitsu
+open Kitsu.Anime
+// Not entirely sure what the best practice is for async/await in F#
+// But I found 2 working ways, maybe you have a better way of doing this
+// I hope it's not too bad, never used F# either
+
+// First
+let fetchAnimeAsync = async {
+        try
+            let resp = Anime.GetAnimeAsync("Fate/stay night")
+            let ani = resp.GetAwaiter().GetResult()
+            return ani.Data.Item(0).Attributes.Titles.EnJp
+        with
+            | :? NoDataFoundException as e -> return e.Message
+    }
+
+printfn "%s" (fetchAnimeAsync |> Async.RunSynchronously) //=> Fate/stay night
+
+// Second
+type Microsoft.FSharp.Control.AsyncBuilder with
+  member x.Bind(t:Task<'T>, f:'T -> Async<'R>) : Async<'R>  = async.Bind(Async.AwaitTask t, f)
+
+let fetchAnimeAsync2 = async {
+        try
+            let! ani = Anime.GetAnimeAsync("Fate/stay night")
+            let animeName = ani.Data.Item(0).Attributes.Titles.JaJp
+            return animeName
+        with
+            | :? NoDataFoundException as e -> return e.Message
+    }
+
+printfn "%s" (fetchAnimeAsync2 |> Async.RunSynchronously) //=> Fate/stay night
 ```
 
 ### TODO
