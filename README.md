@@ -9,7 +9,7 @@ A kitsu api wrapper written in C# .NET Core
 
 ## Example
 **C# .NET Core ConsoleApplication:**
-```cs
+```c#
 using System;
 using System.Threading.Tasks;
 using Kitsu.Anime;
@@ -89,7 +89,7 @@ Class Run
 End Class
 ```
 
-**FSharp .NET Core ConsoleApplication:**
+**F# .NET Core ConsoleApplication:**
 ```f#
 open System
 open System.Net
@@ -114,7 +114,7 @@ printfn "%s" (fetchAnimeAsync |> Async.RunSynchronously) //=> Fate/stay night
 
 // Second
 type Microsoft.FSharp.Control.AsyncBuilder with
-  member x.Bind(t:Task<'T>, f:'T -> Async<'R>) : Async<'R>  = async.Bind(Async.AwaitTask t, f)
+  member x.Bind(t:Task<'T>, f:'T -> Async<'R>) : Async<'R> = async.Bind(Async.AwaitTask t, f)
 
 let fetchAnimeAsync2 = async {
         try
