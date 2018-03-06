@@ -93,39 +93,33 @@ End Class
 ```f#
 open System
 open System.Net
-open System.Threading.Tasks
 open Kitsu
 open Kitsu.Anime
 // Not entirely sure what the best practice is for async/await in F#
-// But I found 2 working ways, maybe you have a better way of doing this
 // I hope it's not too bad, never used F# either
 
-// First
-let fetchAnimeAsync = async {
+(*
+ * Can also use this snipped I found online:
+ * open System.Threading.Tasks
+ * type Microsoft.FSharp.Control.AsyncBuilder with
+ *   member x.Bind(t:Task<'T>, f:'T -> Async<'R>) : Async<'R> = async.Bind(Async.AwaitTask t, f)
+ *
+ * and just do:
+ * let! anime = Anime.GetAnimeAsync("Fate/stay night")
+ *
+ * But idk if that's a good or bad thing to do in F#
+ *)
+
+let animeAsync = async {
         try
-            let resp = Anime.GetAnimeAsync("Fate/stay night")
-            let ani = resp.GetAwaiter().GetResult()
-            return ani.Data.Item(0).Attributes.Titles.EnJp
+            let! anime = Async.AwaitTask (Anime.GetAnimeAsync("Fate/stay night"))
+            let animeName = anime.Data.Item(0).Attributes.Titles.EnJp
+            printfn "%s" animeName //=> Fate/stay night
         with
-            | :? NoDataFoundException as e -> return e.Message
+            | :? NoDataFoundException as e -> printfn "%s" e.Message
     }
 
-printfn "%s" (fetchAnimeAsync |> Async.RunSynchronously) //=> Fate/stay night
-
-// Second
-type Microsoft.FSharp.Control.AsyncBuilder with
-  member x.Bind(t:Task<'T>, f:'T -> Async<'R>) : Async<'R> = async.Bind(Async.AwaitTask t, f)
-
-let fetchAnimeAsync2 = async {
-        try
-            let! ani = Anime.GetAnimeAsync("Fate/stay night")
-            let animeName = ani.Data.Item(0).Attributes.Titles.JaJp
-            return animeName
-        with
-            | :? NoDataFoundException as e -> return e.Message
-    }
-
-printfn "%s" (fetchAnimeAsync2 |> Async.RunSynchronously) //=> Fate/stay night
+Async.RunSynchronously animeAsync
 ```
 
 ### TODO
