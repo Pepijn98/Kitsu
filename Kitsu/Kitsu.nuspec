@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Kitsu</id>
-        <version>1.3.1</version>
+        <version>1.3.2</version>
         <title>Kitsu</title>
         <authors>Kurozero</authors>
         <owners>Kurozero</owners>
@@ -15,6 +15,9 @@
         <copyright>Copyright 2018</copyright>
         <tags>C# csharp kitsu anime manga dotnet dotnetcore novel character ani mal myanimelist</tags>
         <summary>This package allows you to easily interact with kitsu.io's json api. The package does all the deserialization for you!</summary>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="11.0.1" exclude="Build,Analyzers" />
+        </dependencies>
     </metadata>
     <files>
         <file src="/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/bin/Debug/netstandard2.0/Kitsu.dll" target="lib/netstandard2.0/Kitsu.dll" />
