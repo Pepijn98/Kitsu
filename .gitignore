@@ -1,6 +1,9 @@
 .idea
+Examples/CSharp7.1Example/.idea
+Examples/CSharpExample/.idea
+Examples/FSharpExample/.idea
+Examples/VisualBasicExample/.idea
 Kitsu/bin
 Kitsu/obj
 bin
 obj
-kitsu-vscode

@@ -1,15 +1,15 @@
-﻿using System;
+﻿
+using System;
 using System.Threading.Tasks;
 using Kitsu;
 using Kitsu.Anime;
 
-namespace CSharpExample
+// Using C# 7.1 features
+namespace CSharp7._1Example
 {
     public static class Program
     {
-        public static void Main() => RunAsync().GetAwaiter().GetResult();
-
-        private static async Task RunAsync()
+        public static async Task Main()
         {
             // With anime id
             var anime = await Anime.GetAnimeAsync(5);
