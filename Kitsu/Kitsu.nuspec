@@ -14,6 +14,7 @@
         <releaseNotes>Group search, trending anime and manga, exception when no data, site annoucements</releaseNotes>
         <copyright>Copyright 2018</copyright>
         <tags>C# csharp kitsu anime manga dotnet dotnetcore novel character ani mal myanimelist</tags>
+        <summary>This package allows you to easily interact with kitsu.io's json api. The package does all the deserialization for you!</summary>
     </metadata>
     <files>
         <file src="/media/kurozero/Data/RiderProjects/Kitsu/Kitsu/bin/Debug/netstandard2.0/Kitsu.dll" target="lib/netstandard2.0/Kitsu.dll" />
