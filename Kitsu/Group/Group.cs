@@ -13,7 +13,7 @@ namespace Kitsu.Group
         /// <returns>List with group data objects</returns>
         public static async Task<GroupByQueryModel> GetGroupAsync(string query)
         {
-            var json = await Kitsu.Client.GetStringAsync($"groups?filter[query]={query}");
+            var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/groups?filter[query]={query}");
             var group = JsonConvert.DeserializeObject<GroupByQueryModel>(json);
             if (group.Data.Count <= 0) { throw new NoDataFoundException($"No group was found with the query {query}"); }
             return group;
@@ -27,7 +27,7 @@ namespace Kitsu.Group
         /// <returns>List with group data objects</returns>
         public static async Task<GroupByQueryModel> GetGroupAsync(string query, int offset)
         {
-            var json = await Kitsu.Client.GetStringAsync($"groups?filter[query]={query}&page[offset]={offset}");
+            var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/groups?filter[query]={query}&page[offset]={offset}");
             var group = JsonConvert.DeserializeObject<GroupByQueryModel>(json);
             if (group.Data.Count <= 0) { throw new NoDataFoundException($"No group was found with the query {query} and offset {offset}"); }
             return group;
@@ -40,7 +40,7 @@ namespace Kitsu.Group
         /// <returns>Object with group data</returns>
         public static async Task<GroupByIdModel> GetGroupAsync(int id)
         {
-            var json = await Kitsu.Client.GetStringAsync($"groups/{id}");
+            var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/groups/{id}");
             var group = JsonConvert.DeserializeObject<GroupByIdModel>(json);
             return group;
         }

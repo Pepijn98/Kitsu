@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 // ReSharper disable UnusedMemberInSuper.Global
 
-namespace Kitsu
+namespace Kitsu.Announcements
 {
-    public interface IAllAnnoucements
+    public interface IAllAnnouncements
     {
-        List<AnnoucementsDataModel> Data { get; }
+        List<AnnouncementsDataModel> Data { get; }
     }
 
     public interface IAnnouncements
     {
-        AnnoucementsDataModel Data { get; }
+        AnnouncementsDataModel Data { get; }
         AnnouncementsError[] Errors { get; }
     }
     
-    public interface IAnnoucementsData
+    public interface IAnnouncementsData
     {
         string Id { get; }
         string Type { get; }

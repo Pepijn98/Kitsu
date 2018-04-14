@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Kitsu
+namespace Kitsu.Announcements
 {
-    public class AllAnnoucementsModel : IAllAnnoucements
+    public class AllAnnouncementsModel : IAllAnnouncements
     {
         [JsonProperty("data")]
-        public List<AnnoucementsDataModel> Data { get; private set; }
+        public List<AnnouncementsDataModel> Data { get; private set; }
     }
     
-    public class AnnoucementsModel : IAnnouncements
+    public class AnnouncementsModel : IAnnouncements
     {
         [JsonProperty("data")]
-        public AnnoucementsDataModel Data { get; private set; }
+        public AnnouncementsDataModel Data { get; private set; }
         
         [JsonProperty("errors")]
         public AnnouncementsError[] Errors { get; private set; }
     }
     
-    public class AnnoucementsDataModel : IAnnoucementsData
+    public class AnnouncementsDataModel : IAnnouncementsData
     {
         [JsonProperty("id")]
         public string Id { get; private set; }
