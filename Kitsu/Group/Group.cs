@@ -11,11 +11,12 @@ namespace Kitsu.Group
         /// </summary>
         /// <param name="query">The query</param>
         /// <returns>List with group data objects</returns>
+        /// <exception cref="NoDataFoundException"></exception>
         public static async Task<GroupByQueryModel> GetGroupAsync(string query)
         {
             var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/groups?filter[query]={query}");
             var group = JsonConvert.DeserializeObject<GroupByQueryModel>(json);
-            if (group.Data.Count <= 0) { throw new NoDataFoundException($"No group was found with the query {query}"); }
+            if (group.Data.Count <= 0) throw new NoDataFoundException($"No group was found with the query {query}");
             return group;
         }
         
@@ -25,11 +26,12 @@ namespace Kitsu.Group
         /// <param name="query">The query</param>
         /// <param name="offset">Page offset</param>
         /// <returns>List with group data objects</returns>
+        /// <exception cref="NoDataFoundException"></exception>
         public static async Task<GroupByQueryModel> GetGroupAsync(string query, int offset)
         {
             var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/groups?filter[query]={query}&page[offset]={offset}");
             var group = JsonConvert.DeserializeObject<GroupByQueryModel>(json);
-            if (group.Data.Count <= 0) { throw new NoDataFoundException($"No group was found with the query {query} and offset {offset}"); }
+            if (group.Data.Count <= 0) throw new NoDataFoundException($"No group was found with the query {query} and offset {offset}");
             return group;
         }
 
