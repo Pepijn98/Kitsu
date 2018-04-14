@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Kitsu.Announcements
 {
-    public class Announcements
+    public static class Announcements
     {
         /// <summary>
         /// Get all the site announcements

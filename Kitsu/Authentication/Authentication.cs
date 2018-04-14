@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Kitsu.Authentication
 {
-    public class Authentication
+    public static class Authentication
     {
         /// <summary>
         /// Autheticate with your username and password

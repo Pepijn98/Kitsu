@@ -1,11 +1,10 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 // ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable ClassNeverInstantiated.Global
 
 namespace Kitsu
 {
-    public class Kitsu
+    public static class Kitsu
     {
         public const string Version = "1.4.1";
         
