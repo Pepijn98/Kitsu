@@ -12,12 +12,13 @@ namespace Kitsu.User
         /// <param name="filter">Filter type</param>
         /// <param name="text">The query, name or slug</param>
         /// <returns>List with user data objects</returns>
+        /// <exception cref="NoDataFoundException"></exception>
         public static async Task<UserModel> GetUserAsync(FilterType filter, string text)
         {
             var f = CheckType(filter);
             var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/users?filter[{f}]={text}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
-            if (user.Data.Count <= 0) { throw new NoDataFoundException($"No user was found with the {f} {text}"); }
+            if (user.Data.Count <= 0) throw new NoDataFoundException($"No user was found with the {f} {text}");
             return user;
         }
         
@@ -28,12 +29,13 @@ namespace Kitsu.User
         /// <param name="text">The query, name or slug</param>
         /// <param name="offset">Page offset</param>
         /// <returns>List with user data objects</returns>
+        /// <exception cref="NoDataFoundException"></exception>
         public static async Task<UserModel> GetUserAsync(FilterType filter, string text, int offset)
         {
             var f = CheckType(filter);
             var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/users?filter[{f}]={text}&page[offset]={offset}");
             var user = JsonConvert.DeserializeObject<UserModel>(json);
-            if (user.Data.Count <= 0) { throw new NoDataFoundException($"No user was found with the {f} {text} and offset {offset}"); }
+            if (user.Data.Count <= 0) throw new NoDataFoundException($"No user was found with the {f} {text} and offset {offset}");
             return user;
         }
 

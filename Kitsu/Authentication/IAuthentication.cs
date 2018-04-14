@@ -1,7 +1,7 @@
-﻿namespace Kitsu.Authorize
+﻿namespace Kitsu.Authentication
 // ReSharper disable UnusedMemberInSuper.Global
 {
-    public interface IAuthorize
+    public interface IAuthentication
     {
         string AccessToken { get; }
         ulong? CreatedAt { get; }
@@ -11,7 +11,7 @@
         string TokenType { get; }
     }
 
-    public interface IAuthorizeError
+    public interface IAuthenticationError
     {
         string Error { get; }
         string ErrorDescription { get; }

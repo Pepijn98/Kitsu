@@ -1,8 +1,8 @@
 ﻿namespace Kitsu
 {
-    public static class Utils
+    internal static class Utils
     {
-        public static string UppercaseFirst(string s)
+        internal static string UppercaseFirst(string s)
         {
             if (string.IsNullOrEmpty(s))
             {

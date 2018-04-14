@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace Kitsu.Authorize
+namespace Kitsu.Authentication
 {
-    public class AuthorizeModel : IAuthorize
+    public class AuthenticationModel : IAuthentication
     {
         [JsonProperty("access_token")]
         public string AccessToken { get; private set; }
@@ -23,7 +23,7 @@ namespace Kitsu.Authorize
         public string TokenType { get; private set; }
     }
     
-    public class AuthorizeErrorModel : IAuthorizeError
+    public class AuthenticationErrorModel : IAuthenticationError
     {
         [JsonProperty("error")]
         public string Error { get; private set; }

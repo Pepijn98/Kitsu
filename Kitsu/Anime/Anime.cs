@@ -11,11 +11,12 @@ namespace Kitsu.Anime
         /// </summary>
         /// <param name="name">Anime name</param>
         /// <returns>List with anime data objects</returns>
+        /// <exception cref="NoDataFoundException"></exception>
         public static async Task<AnimeByNameModel> GetAnimeAsync(string name)
         {
             var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/anime?filter[text]={name}");
             var anime = JsonConvert.DeserializeObject<AnimeByNameModel>(json);
-            if (anime.Data.Count <= 0) { throw new NoDataFoundException($"No anime was found with the name {name}"); }
+            if (anime.Data.Count <= 0) throw new NoDataFoundException($"No anime was found with the name {name}");
             return anime;
         }
         
@@ -25,11 +26,12 @@ namespace Kitsu.Anime
         /// <param name="name">Anime name</param>
         /// <param name="offset">Page offset</param>
         /// <returns>List with anime data objects</returns>
+        /// <exception cref="NoDataFoundException"></exception>
         public static async Task<AnimeByNameModel> GetAnimeAsync(string name, int offset)
         {
             var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/anime?filter[text]={name}&page[offset]={offset}");
             var anime = JsonConvert.DeserializeObject<AnimeByNameModel>(json);
-            if (anime.Data.Count <= 0) { throw new NoDataFoundException($"No anime was found with the name {name} and offset {offset}"); }
+            if (anime.Data.Count <= 0) throw new NoDataFoundException($"No anime was found with the name {name} and offset {offset}");
             return anime;
         }
 
@@ -49,11 +51,12 @@ namespace Kitsu.Anime
         /// Get the trending anime
         /// </summary>
         /// <returns>List with anime data objects</returns>
+        /// <exception cref="NoDataFoundException"></exception>
         public static async Task<AnimeByNameModel> GetTrendingAsync()
         {
             var json = await Kitsu.Client.GetStringAsync($"{Kitsu.BaseUri}/trending/anime");
             var trending = JsonConvert.DeserializeObject<AnimeByNameModel>(json);
-            if (trending.Data.Count <= 0) { throw new NoDataFoundException("Could not find any trending anime"); }
+            if (trending.Data.Count <= 0) throw new NoDataFoundException("Could not find any trending anime");
             return trending;
         }
     }
