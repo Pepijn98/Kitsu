@@ -13,4 +13,15 @@ namespace Kitsu
         
         public NoDataFoundException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
+    
+    public class InvalidAuthData : Exception
+    {
+        public InvalidAuthData() { }
+
+        public InvalidAuthData(string message) : base(message) { }
+
+        public InvalidAuthData(string message, Exception inner) : base(message, inner) { }
+        
+        public InvalidAuthData(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    }
 }
