@@ -6,7 +6,7 @@ namespace Kitsu
 {
     public static class Kitsu
     {
-        public const string Version = "1.4.1";
+        public const string Version = "1.4.2";
         
         private static readonly string UserAgent = $"Kitsu/v{Version} NugetPackage (https://github.com/KurozeroPB/Kitsu)";
         
