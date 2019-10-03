@@ -11,7 +11,6 @@ A kitsu api wrapper written in C# .NET Core
 C#, F# and VisualBasic examples can be found in the examples folder [here](./Examples)
 
 ## Docs
-Soon™
 
 ### TODO
 * ~~Support getting users~~
