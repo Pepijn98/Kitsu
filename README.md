@@ -10,8 +10,6 @@ A kitsu api wrapper written in C# .NET Core
 ## Example
 C#, F# and VisualBasic examples can be found in the examples folder [here](./Examples)
 
-## Docs
-
 ### TODO
 * ~~Support getting users~~
 * ~~Support searching for groups using query filter~~
